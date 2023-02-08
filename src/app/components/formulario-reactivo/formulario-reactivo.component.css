@@ -1,0 +1,30 @@
+.valido{
+    font-size: 16px;
+    color: rgb(45, 234, 127);
+    margin-top: 10px;
+}
+
+.invalido{
+    color: rgb(240, 61, 61);
+    font-size: 16px;
+    margin-top: 10px;
+
+}
+
+.containerForm{
+    width: 80%;
+    margin: 0 auto;
+    padding: 5vh 5vh;
+}
+
+.form{
+    padding: 5vh 5vh;
+}
+
+.cardtext{
+    height: 10vh;
+    text-align: center;
+    font-size: 28px;
+    display: flex;
+    justify-content: center;
+}

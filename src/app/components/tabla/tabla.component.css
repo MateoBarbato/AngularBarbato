@@ -1,0 +1,10 @@
+.container { 
+    padding: 10vh 5px 10vh 5px;
+    width: 85%;
+    margin: auto;
+}
+
+.mat-mdc-table{
+    background-color: rgb(37, 36, 36);
+    /* color: #4caf4f81 */
+}

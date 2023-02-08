@@ -1,0 +1,45 @@
+
+
+    <div class="containerForm ">
+        <div class="card cardtext shadow-sm p-3 mb-5 bg-body-tertiary rounded">
+            <div class="container">
+                <div class="row align-items-center">
+                    <p>Entrega de Forms y Validations.</p>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="card shadow p-3 mb-5 bg-body-tertiary rounded">
+        <div class="container text-center">
+            <div class="row align-items-center">
+                <form [formGroup]="formularioLogin" class="form">
+                <div class="mb-3">
+                
+                <label for="exampleInputEmail1" class="form-label">Email address</label>
+                <input formControlName="correo" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                <div class="valido" *ngIf="formularioLogin.controls['correo'].valid">Campo Correcto</div>
+                <div class="invalido" *ngIf="formularioLogin.controls['correo'].errors?.['required']">El campo no puede ser vacio</div>
+                <div class="invalido" *ngIf="formularioLogin.controls['correo'].errors?.['email']">El campo tiene un formato incorrecto</div>
+                
+                </div>
+                <div class="mb-3">
+                <label for="exampleInputPassword1" class="form-label">Password</label>
+                <input formControlName="contrasena" type="password" class="form-control" id="exampleInputPassword1">
+                <div class="valido" *ngIf="formularioLogin.controls['contrasena'].valid">Campo Correcto</div>
+                <div class="invalido" *ngIf="formularioLogin.controls['contrasena'].errors?.['required']" >El campo no puede ser vacio</div>
+                <div class="invalido" *ngIf="formularioLogin.controls['contrasena'].errors?.['pattern']">El campo tiene un formato incorrecto</div>
+                </div>
+                <div class="mb-3 form-check">
+                <input formControlName="recordarCredenciales" type="checkbox" class="form-check-input" id="exampleCheck1">
+                <label  class="form-check-label fs-5" for="exampleCheck1">Check me out</label>
+                </div>
+                <button type="submit" class="btn btn-outline-info" (click)="login()"  >Pruebalo!</button>
+                </form>
+            </div>
+        </div>
+        </div>
+      <div class="containerForm">
+
+      
+    
