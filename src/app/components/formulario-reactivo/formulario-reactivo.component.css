@@ -1,3 +1,8 @@
+*{
+    color: black;
+    /* font-size: 20px; */
+}
+
 .valido{
     font-size: 16px;
     color: rgb(45, 234, 127);
@@ -19,12 +24,4 @@
 
 .form{
     padding: 5vh 5vh;
-}
-
-.cardtext{
-    height: 10vh;
-    text-align: center;
-    font-size: 28px;
-    display: flex;
-    justify-content: center;
 }

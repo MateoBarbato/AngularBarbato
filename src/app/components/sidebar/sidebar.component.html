@@ -1,0 +1,17 @@
+<mat-drawer-container  autosize>
+  <mat-drawer #drawer mode="side">
+    <p>Auto-resizing sidenav</p>
+    <p >Lorem, ipsum dolor sit amet consectetur.</p>
+  
+  </mat-drawer>
+
+  <div class="container">
+    <button color="accent" class="button-toggle" type="button" mat-button (click)="drawer.toggle()">
+      Toggle sidenav
+    </button>
+    <app-tabla></app-tabla>
+    <app-card-table></app-card-table>
+    <app-formulario-reactivo></app-formulario-reactivo>
+  </div>
+
+</mat-drawer-container> 

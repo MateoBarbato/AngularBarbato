@@ -2,44 +2,52 @@
 
 <div class="container">
 
-    <h2 >Demo de Tabla en Angular</h2>
-
-    <table mat-table [dataSource]="dataSource">
-
-        <ng-container matColumnDef="nombre">
-            <th mat-header-cell *matHeaderCellDef="">Nombre</th>
-            <td mat-cell *matCellDef="let element">{{element.nombre}}</td>
-        </ng-container>
+    <div class="background">
+        <table mat-table [dataSource]="dataSource">
+            <ng-container matColumnDef="nombre">
+                <th mat-header-cell *matHeaderCellDef="">Nombre</th>
+                <td mat-cell *matCellDef="let element">{{element.nombre | nombreApellido:element.apellido}}</td>
+            </ng-container>
+            <ng-container matColumnDef="edad">
+                <th mat-header-cell *matHeaderCellDef="">Edad</th>
+                <td mat-cell *matCellDef="let element" >{{element.edad}}</td>
+            </ng-container>
+            <ng-container matColumnDef="sexo">
+                <th mat-header-cell *matHeaderCellDef="">Sexo</th>
+                <td mat-cell *matCellDef="let element" >{{element.sexo}}</td>
+            </ng-container>
+        
+            <ng-container matColumnDef="inscripcionAbierta">
+                <th mat-header-cell *matHeaderCellDef="">Inscripciones abiertas</th>
+                <td mat-cell [appBooleanEstilo]="element.inscripcionAbierta" *matCellDef="let element">{{element.inscripcionAbierta | booleanToText:'Si' : 'No'}}</td>
+            </ng-container>
+        
+            <ng-container matColumnDef="validado">
+                <th mat-header-cell *matHeaderCellDef="">Validado</th>
+                <td mat-cell  *matCellDef="let element">{{element.validado}}</td>
+            </ng-container>
     
-        <ng-container matColumnDef="comision">
-            <th mat-header-cell *matHeaderCellDef="">Comision</th>
-            <td mat-cell *matCellDef="let element">{{element.comision}}</td>
-        </ng-container>
-    
-        <ng-container matColumnDef="profesor">
-            <th mat-header-cell *matHeaderCellDef="">Profesor</th>
-            <td mat-cell *matCellDef="let element" >{{element.profesor.nombre}}</td>
-        </ng-container>
-    
-        <ng-container matColumnDef="inscripcionAbierta">
-            <th mat-header-cell *matHeaderCellDef="">inscripciones abiertas</th>
-            <td mat-cell [appBooleanEstilo]="element.inscripcionAbierta" *matCellDef="let element">{{element.inscripcionAbierta | booleanToText:'Si' : 'No'}}</td>
-        </ng-container>
-    
-        <ng-container matColumnDef="fechaInicio">
-            <th mat-header-cell *matHeaderCellDef="">Inicia</th>
-            <td mat-cell  *matCellDef="let element">{{element.fechaInicio | formatoFecha}}</td>
-        </ng-container>
-    
-        <ng-container matColumnDef="fechaFin">
-            <th mat-header-cell *matHeaderCellDef="">Finaliza</th>
-            <td mat-cell *matCellDef="let element">{{element.fechaFin |date: 'dd/MM/YYYY'}}</td>
-        </ng-container>
-    
-       
-    
-        <tr mat-footer-row *matHeaderRowDef="columnas"></tr>
-        <tr mat-row *matRowDef="let row; columns : columnas"></tr>
-    
-    </table>
+            <ng-container matColumnDef="acciones">
+                <th mat-header-cell *matHeaderCellDef="">Acciones</th>
+                <td mat-cell  *matCellDef="let element">
+                    <button mat-icon-button >
+                        <mat-icon color="accent">edit</mat-icon>
+                    </button>
+                    <button mat-icon-button >
+                        <mat-icon color="warn">delete</mat-icon>
+                    </button>
+                    
+                </td>
+            </ng-container>
+           
+        
+            <tr mat-footer-row *matHeaderRowDef="columnas"></tr>
+            <tr mat-row *matRowDef="let row; columns : columnas"></tr>
+        
+        </table>
+        <mat-paginator [pageSizeOptions]="[5, 10, 20]"
+                     showFirstLastButtons
+                     aria-label="Select page of periodic elements">
+      </mat-paginator>
+    </div>
 </div>

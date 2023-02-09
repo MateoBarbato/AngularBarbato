@@ -7,24 +7,29 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./formulario-reactivo.component.css']
 })
 export class FormularioReactivoComponent {
-  formularioLogin!: FormGroup;
+  formularioAlumno!: FormGroup;
 
   constructor(){
-    let passwordRegex: string = '^(?=.*\d).{4,8}$'
+    let numberPattern:string = '[1-9][0-9]';
+
+
     let controles: any = {
-      correo: new FormControl('', [Validators.email,Validators.required]),
-      contrasena: new FormControl('', [Validators.pattern(passwordRegex),Validators.required]),
-      recordarCredenciales: new FormControl(true)
+      nombre: new FormControl('', [Validators.required]),
+      apellido: new FormControl('', [Validators.required]),
+      inscripcionAbierta: new FormControl(true),
+      edad: new FormControl('', [Validators.required, Validators.pattern(numberPattern)]),
+      sexo: new FormControl('', [Validators.required]),
+      validado: new FormControl(true),
       
     }
 
-    this.formularioLogin = new FormGroup(controles)
+    this.formularioAlumno = new FormGroup(controles)
   }
 
 
   login(){
-    console.log(this.formularioLogin)
-    if(this.formularioLogin.controls['correo'].errors?.['email']){
+    console.log(this.formularioAlumno)
+    if(this.formularioAlumno.controls['nombre'].errors?.['required']){
       console.log('hubo error')
     }
   }

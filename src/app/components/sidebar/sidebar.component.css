@@ -1,0 +1,11 @@
+mat-sidenav {
+    width: 300px;
+  }
+
+.button-toggle{
+  margin: 5vh;
+}
+
+.container{
+  min-height: 120vh;
+}

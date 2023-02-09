@@ -1,61 +1,137 @@
-import { Component } from '@angular/core';
+import {AfterViewInit, Component, ViewChild} from '@angular/core';
+import {MatPaginator} from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
-import { Curso } from 'src/app/models/curso';
+import { Alumno } from 'src/app/models/alumno';
 
 @Component({
   selector: 'app-tabla',
   templateUrl: './tabla.component.html',
   styleUrls: ['./tabla.component.css']
 })
-export class TablaComponent {
+export class TablaComponent implements AfterViewInit {
+alumnos:Alumno[] = [
+        {nombre:'Angel',
+        apellido:'Perez',
+        inscripcionAbierta:true,
+        edad:21,
+        sexo:'Hombre',
+        validado:true
+        },
+        {nombre:'Pedro',
+        apellido:'Perez',
+        inscripcionAbierta:true,
+        edad:21,
+        sexo:'Hombre',
+        validado:true
+        },
+        {nombre:'Angel',
+        apellido:'Perez',
+        inscripcionAbierta:true,
+        edad:21,
+        sexo:'Hombre',
+        validado:true
+        },
+        {nombre:'Angel',
+        apellido:'Perez',
+        inscripcionAbierta:true,
+        edad:21,
+        sexo:'Hombre',
+        validado:true
+        },
+        {nombre:'Angel',
+        apellido:'Perez',
+        inscripcionAbierta:true,
+        edad:21,
+        sexo:'Hombre',
+        validado:true
+        },
+        {nombre:'Angel',
+        apellido:'Perez',
+        inscripcionAbierta:true,
+        edad:21,
+        sexo:'Hombre',
+        validado:true
+        },
+        {nombre:'Angel',
+        apellido:'Perez',
+        inscripcionAbierta:true,
+        edad:21,
+        sexo:'Hombre',
+        validado:true
+        },
+        {nombre:'Angel',
+        apellido:'Perez',
+        inscripcionAbierta:true,
+        edad:21,
+        sexo:'Hombre',
+        validado:true
+        },
+        {nombre:'Angel',
+        apellido:'Perez',
+        inscripcionAbierta:true,
+        edad:21,
+        sexo:'Hombre',
+        validado:true
+        },
+        {nombre:'Angel',
+        apellido:'Perez',
+        inscripcionAbierta:true,
+        edad:21,
+        sexo:'Hombre',
+        validado:true
+        },
+        {nombre:'Angel',
+        apellido:'Perez',
+        inscripcionAbierta:true,
+        edad:21,
+        sexo:'Hombre',
+        validado:true
+        },
+        {nombre:'Angel',
+        apellido:'Perez',
+        inscripcionAbierta:true,
+        edad:21,
+        sexo:'Hombre',
+        validado:true
+        },
+        {nombre:'Angel',
+        apellido:'Perez',
+        inscripcionAbierta:true,
+        edad:21,
+        sexo:'Hombre',
+        validado:true
+        },
+        {nombre:'Angel',
+        apellido:'Perez',
+        inscripcionAbierta:true,
+        edad:21,
+        sexo:'Hombre',
+        validado:true
+        },
+        {nombre:'Angel',
+        apellido:'Perez',
+        inscripcionAbierta:true,
+        edad:21,
+        sexo:'Hombre',
+        validado:true
+        },
+        {nombre:'Angel',
+        apellido:'Perez',
+        inscripcionAbierta:true,
+        edad:21,
+        sexo:'Hombre',
+        validado:true
+        }]
+  columnas : string[] = ['nombre', 'inscripcionAbierta', 'edad', 'sexo', 'validado', 'acciones' ]
+  dataSource = new MatTableDataSource<Alumno>(this.alumnos);
 
-  cursos:Curso[] = [
-    {nombre:'Angular',
-    comision:'49512',
-    profesor:{
-      nombre:'Abner',
-      correo:"asdas@gmail.com",
-      fechaRegistro: new Date(2022,7,14)},
-    inscripcionAbierta:true,
-    fechaInicio: new Date(2023, 0,31),
-    fechaFin: new Date(2023,2,28)
-    },
-    {nombre:'Angular',
-    comision:'614213',
-    profesor:{
-      nombre:'Abner',
-      correo:"asdas@gmail.com",
-      fechaRegistro: new Date(2022,7,14)},
-    inscripcionAbierta:false,
-    fechaInicio: new Date(2023, 0,31),
-    fechaFin: new Date(2023,2,28)
-    },
-    {nombre:'React',
-    comision:'123123',
-    profesor:{
-      nombre:'Caro',
-      correo:"a4123asdas@gmail.com",
-      fechaRegistro: new Date(2022,7,14)},
-    inscripcionAbierta:true,
-    fechaInicio: new Date(2023, 6,31),
-    fechaFin: new Date(2023,8,28)
-    },
-    {nombre:'React',
-    comision:'123123',
-    profesor:{
-      nombre:'Caro',
-      correo:"a4123asdas@gmail.com",
-      fechaRegistro: new Date(2022,7,14)},
-    inscripcionAbierta:true,
-    fechaInicio: new Date(2023, 6,31),
-    fechaFin: new Date(2023,8,28)
-    },
-    
-  ]
 
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
 
-  dataSource : MatTableDataSource<Curso> = new MatTableDataSource<Curso>(this.cursos)
-
-  columnas : string[] = ['nombre', 'comision' , 'profesor', 'inscripcionAbierta', 'fechaInicio', 'fechaFin', ]
-
+  ngAfterViewInit() {
+    this.dataSource.paginator = this.paginator;
+  }
 }
+
+
+
