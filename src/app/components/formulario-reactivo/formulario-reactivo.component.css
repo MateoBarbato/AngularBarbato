@@ -20,6 +20,11 @@
     width: 80%;
     margin: 0 auto;
     padding: 5vh 5vh;
+    
+}
+
+.sombras {
+    box-shadow: 15px 16px 31px 2px rgba(0,0,0,1);
 }
 
 .form{
