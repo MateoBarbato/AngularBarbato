@@ -16,7 +16,6 @@ export class BooleanEstiloDirective {
   }
 
   ngOnInit() : void {
-    console.log(this.inscripcionAbierta)
     this.renderer.setStyle(this.element.nativeElement, 'color', '#ffffff')
     this.renderer.setStyle(this.element.nativeElement, 'padding', '0px 10px 0px 10px')
     this.renderer.setStyle(this.element.nativeElement, 'border-radius', '5px')

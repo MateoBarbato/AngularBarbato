@@ -11,9 +11,6 @@ import { FiltroPipe } from './pipes/filtro.pipe';
 import { SidebarComponent } from './components/sidebar/sidebar.component'
 import { BooleanToTextPipe } from './pipes/boolean-to-text.pipe';
 import { CardTableComponent } from './components/card-table/card-table.component';
-
-
-
 import { MatFormFieldModule} from '@angular/material/form-field'
 import { MatInputModule} from '@angular/material/input';
 import {MatButtonModule} from '@angular/material/button'
@@ -26,6 +23,15 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import { NombreApellidoPipe } from './pipes/nombre-apellido.pipe';
 import { TitleFontDirective } from './directives/title-font.directive';
+import { CursosService } from './services/cursos.service';
+import { AlumnosService } from './services/alumnos.service';
+import { ButtonAddComponent } from './components/button-add/button-add.component';
+import { env } from 'src/enviroment/enviroment';
+import { cursos } from './services/cursos.data';
+import { alumnos } from './services/alumnos.data';
+import { config, token } from './config';
+import { TablaUsuarioComponent } from './components/tabla-usuario/tabla-usuario.component';
+import { UsuarioService } from './services/usuario.service';
 
 
 @NgModule({
@@ -41,6 +47,8 @@ import { TitleFontDirective } from './directives/title-font.directive';
     SidebarComponent,
     NombreApellidoPipe,
     TitleFontDirective,
+    ButtonAddComponent,
+    TablaUsuarioComponent,
     
   ],
   imports: [
@@ -60,7 +68,27 @@ import { TitleFontDirective } from './directives/title-font.directive';
     MatPaginatorModule
     
   ],
-  providers: [],
+  providers:[UsuarioService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+
+
+
+
+  // providers: [{provide: CursosService, useFactory: ()=>{
+  //    if(env.utilizarServicioAlpha == 'Legacy'){
+  //     return cursos
+  //   }else{
+  //     return new CursosService()
+  //   }}},
+  //   {provide: AlumnosService, useFactory:()=>{
+  //     if(env.utilizarServicioAlpha == 'Legacy'){
+  //       return alumnos
+  //     }else{
+  //       return new AlumnosService()
+  //     }}},
+
+  //   {provide:token, useValue: config}
+  
+  // ],

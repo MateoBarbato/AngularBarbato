@@ -1,0 +1,26 @@
+<div class="container">
+    <div class="row card-table">
+        <div class="col" *ngFor="let usuario of usuarios">
+            <mat-card class="card">
+                <mat-card-header>
+                    <mat-card-title>{{usuario.nombre}}</mat-card-title>
+                    <mat-card-subtitle>{{usuario.apellido}}</mat-card-subtitle>
+                </mat-card-header>
+                <img class="card-imagen" mat-card-image src="https://parentesis.com/imagesPosts/coder00.jpg" alt="">
+                <mat-card-content>
+                    <p>Logged:</p>
+                    <p [appBooleanEstilo]="usuario.logged">{{usuario.logged }}</p>
+                    <!-- {{ usuario.loggedin | booleanToText:'Inscripciones abiertas':'Inscripciones cerradas' }} -->
+                </mat-card-content>
+                <mat-card-actions align="end">
+                    <button mat-raised-button color="primary" >
+                        Editar
+                    </button>
+                    <button mat-raised-button color="accent">
+                        Eliminar
+                    </button>
+                </mat-card-actions>
+            </mat-card>
+        </div>
+    </div>
+</div>
