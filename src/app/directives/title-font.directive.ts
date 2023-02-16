@@ -13,7 +13,6 @@ export class TitleFontDirective {
     ) { }
 
     ngOnInit() : void {
-      console.log(this.value)
       this.renderer.setStyle(this.element.nativeElement, 'font-size', this.value+'px')
     
     }

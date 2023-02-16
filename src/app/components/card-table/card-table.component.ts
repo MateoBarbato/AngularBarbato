@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { Curso } from 'src/app/models/curso';
 import { CursosService } from 'src/app/services/cursos.service';
@@ -10,25 +10,52 @@ import {map, Observable, Subscription } from 'rxjs';
   styleUrls: ['./card-table.component.css']
 })
 export class CardTableComponent implements OnInit, OnDestroy {
-  filtro!: string;
+  filtro: string = ''
   columnas : string[] = ['nombre', 'comision' , 'profesor', 'inscripcionAbierta', 'fechaInicio', 'fechaFin', ]
   dataSource!: MatTableDataSource<Curso>
   cursos!:Curso[];
   cursos$!:Observable<Curso[]>;
   subscription!:Subscription
+  usuariosFiltrados!: Curso[];
+
+  // get fiflterText(){
+  //   return this.filtro
+  // }
+
+  // set filterText(value:string){
+  //   this.filtro = value
+  //   this.usuariosFiltrados = this.filterUser(value)
+  // }
 
   constructor(
     private cursosService : CursosService,
+    
     // @Inject(token) private config:Configuracion
   ){
   }
 
+  filterUser(filterTerm: string){
+    if(this.cursos.length === 0 || filterTerm == ''){
+      return this.cursos
+    } else {
+      return this.cursos.filter((curso) => {
+        return curso.nombre.toLowerCase().includes(filterTerm.toLowerCase())
+      })
+    }
+
+  }
+
   ngOnInit(): void {
-    console.log('Instanciando Data Source');
     this.cursos$ = this.cursosService.obtenerCursosObservable()
+    // FILTRO PARA ELIMINAR LOS CURSOS QUE NO TENGAN LA INSCRIPCION ABIERTA
     this.subscription = this.cursosService.obtenerCursosObservable().pipe(map(cursos=>cursos.filter((curso)=>curso.inscripcionAbierta == true))).subscribe((data)=>{
-      this.cursos = data
+      this.usuariosFiltrados = data
+      console.log('Mis datos filtrados son estos:',this.usuariosFiltrados)
+      // ACA ES DONDE TENGO EL PROBLEMA, INTENTO ASIGNARLOS A CURSOS$ PARA QUE ESTEN UNIDOS A LA SUBSCRIPCION PERO ME TIRA ERROR, INTENTE HACER UN NEXT ADENTRO Y NO LO LOGRE
     })
+    
+    
+
   }
 
   ngOnDestroy(): void {

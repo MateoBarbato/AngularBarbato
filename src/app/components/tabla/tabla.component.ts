@@ -24,15 +24,11 @@ export class TablaComponent implements AfterViewInit,OnDestroy {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
   ngOnInit(): void {
-    console.log('Instanciando Data Source');
     this.dataSource = new MatTableDataSource<Alumno>();
     this.suscripcion = this.alumnosService.obtenerAlumnosObservable().subscribe((alumnos: Alumno[]) => {
-      console.log('Agrego datos');
-      this.dataSource.data = alumnos;
-      console.log(this.dataSource.data);
-      
+    this.dataSource.data = alumnos;
+
     })
-    console.log('ng on init ')
   }
 
   ngAfterViewInit() {

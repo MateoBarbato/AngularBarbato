@@ -23,7 +23,7 @@ export class ButtonAddComponent {
     let nuevoalumno : Alumno = {
       nombre: 'Alejo',
       apellido: 'Splett',
-      inscripcionAbierta:false,
+      inscripcionAbierta:true,
       edad:27,
       sexo:'no',
       validado:true
@@ -40,7 +40,7 @@ export class ButtonAddComponent {
       nombre:'Abner',
       correo:"asdas@gmail.com",
       fechaRegistro: new Date(2022,7,14)},
-      inscripcionAbierta:false,
+      inscripcionAbierta:true,
       fechaInicio: new Date(2023, 0,31),
       fechaFin: new Date(2023,2,28)
     }
