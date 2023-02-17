@@ -48,8 +48,8 @@ export class CardTableComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.cursos$ = this.cursosService.obtenerCursosObservable()
     // FILTRO PARA ELIMINAR LOS CURSOS QUE NO TENGAN LA INSCRIPCION ABIERTA
-    this.subscription = this.cursosService.obtenerCursosObservable().pipe(map(cursos=>cursos.filter((curso)=>curso.inscripcionAbierta == true))).subscribe((data)=>{
-      this.usuariosFiltrados = data
+    this.subscription = this.cursosService.obtenerCursosObservable().pipe(map(cursos=>cursos.filter((curso)=>curso.inscripcionAbierta == true))).subscribe((dataFiltrada)=>{
+      this.usuariosFiltrados = dataFiltrada
       console.log('Mis datos filtrados son estos:',this.usuariosFiltrados)
       // ACA ES DONDE TENGO EL PROBLEMA, INTENTO ASIGNARLOS A CURSOS$ PARA QUE ESTEN UNIDOS A LA SUBSCRIPCION PERO ME TIRA ERROR, INTENTE HACER UN NEXT ADENTRO Y NO LO LOGRE
     })
