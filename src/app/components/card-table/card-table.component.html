@@ -1,17 +1,20 @@
 <div class="background">
-    <div class="filtro">
-        <div class="row filtro-row">
-            <mat-form-field class="formBox">
-                <mat-label>
-                    Filtro:
-                </mat-label>
-                <input type="text" matInput [(ngModel)]="filtro">
-            </mat-form-field>
+    <div class="container filtro">
+        <div class="filtro">
+            <div class="row filtro-row">
+                <mat-form-field class="formBox">
+                    <mat-label>
+                        Filtro:
+                    </mat-label>
+                    <input type="text" matInput [(ngModel)]="filtro">
+                </mat-form-field>
+            </div>
         </div>
     </div>
     
-    <div class="container">
+    <div class="container container-background">
         <div class="row card-table">
+            <h2 class="title">Tabla Cursos</h2>
             <div class="col" *ngFor="let curso of usuariosFiltrados ">
                 <mat-card class="card">
                     <mat-card-header>

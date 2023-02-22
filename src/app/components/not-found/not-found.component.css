@@ -1,0 +1,42 @@
+.notFoundContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 5% 0;
+  }
+  
+  .text{
+    font-size: 32px;
+    font-family: 'Oswald', sans-serif;
+    text-align: center;
+    margin: 1% 0;
+  }
+  
+  .button {
+    font-size: 20px;
+    font-weight: 400;
+    color: black;
+  }
+
+  .buttoncontainer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .notFoundContainer a:hover {
+    text-decoration: underline 2px black;
+  }
+  
+  .notFoundContainer div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .imageContainer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
