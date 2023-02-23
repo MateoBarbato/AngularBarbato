@@ -1,7 +1,7 @@
 <mat-toolbar >
-    <span [appTitleFont]="45">Listados</span>
+    <span [appTitleFont]="45">AngularBarbato</span>
     <span class="example-spacer"></span>
-    <button mat-button (click)='redirigirInicio()'>Inicio</button>
-    <a mat-button (click)='redirigirCursos()'>Cursos </a>
-    <a mat-button (click)='redirigirAlumnos()'>Alumnos </a>
+    <button mat-button [routerLink]="['/inicio']" routerLinkActive="router-link-active" >Inicio</button>
+    <a mat-button [routerLink]="['/cursos']" routerLinkActive="router-link-active">Cursos </a>
+    <a mat-button [routerLink]="['/alumnos']" routerLinkActive="router-link-active" >Alumnos </a>
   </mat-toolbar>

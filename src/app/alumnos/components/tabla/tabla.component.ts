@@ -39,6 +39,7 @@ export class TablaComponent implements AfterViewInit,OnDestroy {
   ngOnDestroy(): void {
     this.suscripcion.unsubscribe();
   }
+
 }
 
 

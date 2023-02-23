@@ -15,7 +15,7 @@ export class ToolbarComponent {
   }
 
   redirigirInicio(){
-    this.router.navigate(['inicio'])
+    this.router.navigate([''])
 
   }
 

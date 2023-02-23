@@ -9,6 +9,7 @@ const routes: Routes = [
     {path:'listar', component:TablaComponent},
     {path:'editar', component:EditarAlumnoComponent},
     {path:'agregar', component:AgregarAlumnoComponent},
+    {path:'', redirectTo:'listar',pathMatch:'full'},
   ]}
 ];
 

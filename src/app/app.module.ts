@@ -17,6 +17,8 @@ import { PipesDirectivesModule} from './pipes-directives-module.module';
 import { CursosRoutingModule } from './cursos/cursosRouting';
 import { AlumnosModule } from './alumnos/alumnos.module';
 import { AlumnosRoutingModule } from './alumnos/alumnosRouting';
+import { NotfoundRoutingModule } from './notFoundRouting';
+import { InicioComponent } from './core/components/inicio/inicio.component';
 
 
 @NgModule({
@@ -27,7 +29,8 @@ import { AlumnosRoutingModule } from './alumnos/alumnosRouting';
     ButtonAddComponent,
     TablaUsuarioComponent,
     NotFoundComponent,
-    ToolbarComponent
+    ToolbarComponent,
+    InicioComponent
   ],
   imports: [
     BrowserModule,
@@ -40,7 +43,8 @@ import { AlumnosRoutingModule } from './alumnos/alumnosRouting';
     AlumnosModule,
     CursosRoutingModule,
     AlumnosRoutingModule,
-    PipesDirectivesModule
+    PipesDirectivesModule,
+    NotfoundRoutingModule
 
   ],
   providers:[UsuarioService],

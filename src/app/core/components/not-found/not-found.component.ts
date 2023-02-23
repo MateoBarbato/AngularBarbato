@@ -16,7 +16,7 @@ export class NotFoundComponent {
 
 
   redirigirInicio(){
-    this.router.navigate(['inicio'])
+    this.router.navigate([''])
   }
 
 }
