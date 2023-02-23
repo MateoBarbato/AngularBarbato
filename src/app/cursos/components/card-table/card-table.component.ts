@@ -1,7 +1,7 @@
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { Curso } from 'src/app/models/curso';
-import { CursosService } from 'src/app/services/cursos.service';
+import { CursosService } from '../../services/cursos.service';
 import {map, Observable, Subscription } from 'rxjs';
 
 @Component({
@@ -18,19 +18,8 @@ export class CardTableComponent implements OnInit, OnDestroy {
   subscription!:Subscription
   usuariosFiltrados!: Curso[];
 
-  // get fiflterText(){
-  //   return this.filtro
-  // }
-
-  // set filterText(value:string){
-  //   this.filtro = value
-  //   this.usuariosFiltrados = this.filterUser(value)
-  // }
-
   constructor(
     private cursosService : CursosService,
-    
-    // @Inject(token) private config:Configuracion
   ){
   }
 
@@ -53,9 +42,6 @@ export class CardTableComponent implements OnInit, OnDestroy {
       console.log('Mis datos filtrados son estos:',this.usuariosFiltrados)
       // ACA ES DONDE TENGO EL PROBLEMA, INTENTO ASIGNARLOS A CURSOS$ PARA QUE ESTEN UNIDOS A LA SUBSCRIPCION PERO ME TIRA ERROR, INTENTE HACER UN NEXT ADENTRO Y NO LO LOGRE
     })
-    
-    
-
   }
 
   ngOnDestroy(): void {

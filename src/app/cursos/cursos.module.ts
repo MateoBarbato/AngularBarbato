@@ -7,6 +7,7 @@ import { CursosRoutingModule } from './cursosRouting';
 import { PipesDirectivesModule } from '../pipes-directives-module.module';
 import { FormsModule } from '@angular/forms';
 import { AgregarCursoComponent } from './components/agregar-curso/agregar-curso.component';
+import { CursosService } from './services/cursos.service';
 
 
 
@@ -23,8 +24,12 @@ import { AgregarCursoComponent } from './components/agregar-curso/agregar-curso.
     CursosRoutingModule,
     FormsModule,
   ],
-  exports:[CardTableComponent,
+  exports:[
+    CardTableComponent,
     EditarCursoComponent,
-    AgregarCursoComponent,]
+    AgregarCursoComponent,
+  ],
+
+    providers:[CursosService]
 })
 export class CursosModule { }

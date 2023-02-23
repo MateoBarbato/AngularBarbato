@@ -1,10 +1,8 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { Alumno } from '../models/alumno';
+import { Alumno } from '../../models/alumno';
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class AlumnosService {
 
   private alumnos:Alumno[] = [

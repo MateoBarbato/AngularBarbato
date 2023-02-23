@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
+import { AlumnosService } from 'src/app/alumnos/services/alumnos.service';
+import { CursosService } from 'src/app/cursos/services/cursos.service';
 import { Alumno } from 'src/app/models/alumno';
 import { Curso } from 'src/app/models/curso';
-import { AlumnosService } from 'src/app/services/alumnos.service';
-import { CursosService } from 'src/app/services/cursos.service';
+
 
 @Component({
   selector: 'app-button-add',

@@ -3,7 +3,8 @@ import {MatPaginator} from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { Subscription } from 'rxjs';
 import { Alumno } from 'src/app/models/alumno';
-import { AlumnosService } from 'src/app/services/alumnos.service';
+import { AlumnosService } from '../../services/alumnos.service';
+
 
 @Component({
   selector: 'app-tabla',

@@ -1,10 +1,8 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { Curso } from '../models/curso';
+import { Curso } from '../../models/curso';
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class CursosService {
   private cursos:Curso[] = [
     {nombre:'Angular',
@@ -62,5 +60,24 @@ export class CursosService {
     this.cursos.push(curso)
     this.cursos$.next(this.cursos)
     console.log('Curso agregado',this.cursos)
+  }
+
+  editarCurso( curso:Curso):void{
+    let indice = this.cursos.findIndex((c:Curso)=> c.comision === curso.comision)
+
+    if(indice > -1){
+      this.cursos[indice] = curso;
+      this.cursos$.next(this.cursos);
+    }
+  }
+
+  eliminarCurso(curso:Curso):void {
+    let indice = this.cursos.findIndex((c:Curso)=> c.comision === curso.comision)
+
+    if(indice > -1){
+      this.cursos.splice(indice,1);
+      this.cursos$.next(this.cursos);
+    }
+
   }
 }
