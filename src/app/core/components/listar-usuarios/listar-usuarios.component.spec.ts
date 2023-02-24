@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { TablaUsuarioComponent } from './tabla-usuario.component';
+import { ListarUsuariosComponent } from './listar-usuarios.component';
 
-describe('TablaUsuarioComponent', () => {
-  let component: TablaUsuarioComponent;
-  let fixture: ComponentFixture<TablaUsuarioComponent>;
+describe('ListarUsuariosComponent', () => {
+  let component: ListarUsuariosComponent;
+  let fixture: ComponentFixture<ListarUsuariosComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ TablaUsuarioComponent ]
+      declarations: [ ListarUsuariosComponent ]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(TablaUsuarioComponent);
+    fixture = TestBed.createComponent(ListarUsuariosComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -7,7 +7,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SidebarComponent } from './core/components/sidebar/sidebar.component'
 import {MaterialModule} from './material.module'
 import { ButtonAddComponent } from './core/components/button-add/button-add.component';
-import { TablaUsuarioComponent } from './core/components/tabla-usuario/tabla-usuario.component';
+import { ListarUsuariosComponent } from './core/components/listar-usuarios/listar-usuarios.component';
 import { UsuarioService } from './services/usuario.service';
 import { AppRoutingModule } from './app-routing.module';
 import { NotFoundComponent } from './core/components/not-found/not-found.component';
@@ -27,7 +27,7 @@ import { InicioComponent } from './core/components/inicio/inicio.component';
     FormularioReactivoComponent,
     SidebarComponent,
     ButtonAddComponent,
-    TablaUsuarioComponent,
+    ListarUsuariosComponent,
     NotFoundComponent,
     ToolbarComponent,
     InicioComponent

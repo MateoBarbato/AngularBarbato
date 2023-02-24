@@ -7,11 +7,11 @@ import { AlumnosService } from '../../services/alumnos.service';
 
 
 @Component({
-  selector: 'app-tabla',
-  templateUrl: './tabla.component.html',
-  styleUrls: ['./tabla.component.css']
+  selector: 'app-listar-alumnos',
+  templateUrl: './listar-alumnos.component.html',
+  styleUrls: ['./listar-alumnos.component.css']
 })
-export class TablaComponent implements AfterViewInit,OnDestroy {
+export class ListarAlumnosComponent implements AfterViewInit,OnDestroy {
   columnas : string[] = ['nombre', 'inscripcionAbierta', 'edad', 'sexo', 'validado', 'acciones' ]
   dataSource!: MatTableDataSource<Alumno>;
   suscripcion!: Subscription;

@@ -6,11 +6,11 @@ import {map, Observable, Subscription } from 'rxjs';
 import { MatPaginator } from '@angular/material/paginator';
 
 @Component({
-  selector: 'app-card-table',
-  templateUrl: './card-table.component.html',
-  styleUrls: ['./card-table.component.css']
+  selector: 'app-listar-cursos',
+  templateUrl: './listar-cursos.component.html',
+  styleUrls: ['./listar-cursos.component.css']
 })
-export class CardTableComponent implements OnInit,AfterViewInit, OnDestroy {
+export class ListarCursosComponent implements OnInit,AfterViewInit, OnDestroy {
   filtro: string = ''
   columnas : string[] = ['nombre', 'comision' , 'profesor', 'inscripcionAbierta', 'fechaInicio', 'fechaFin','acciones' ]
   dataSource!: MatTableDataSource<Curso>

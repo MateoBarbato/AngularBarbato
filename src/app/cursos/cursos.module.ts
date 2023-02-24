@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { CardTableComponent } from './components/card-table/card-table.component';
+import { ListarCursosComponent } from './components/listar-cursos/listar-cursos.component';
 import {MaterialModule} from '../material.module';
 import { EditarCursoComponent } from './components/editar-curso/editar-curso.component'
 import { CursosRoutingModule } from './cursosRouting';
@@ -13,7 +13,7 @@ import { CursosService } from './services/cursos.service';
 
 @NgModule({
   declarations: [
-    CardTableComponent,
+    ListarCursosComponent,
     EditarCursoComponent,
     AgregarCursoComponent,
   ],
@@ -25,7 +25,7 @@ import { CursosService } from './services/cursos.service';
     FormsModule,
   ],
   exports:[
-    CardTableComponent,
+    ListarCursosComponent,
     EditarCursoComponent,
     AgregarCursoComponent,
   ],

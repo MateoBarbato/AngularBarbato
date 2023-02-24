@@ -3,11 +3,11 @@ import { Usuario } from 'src/app/models/usuario';
 import { UsuarioService } from 'src/app/services/usuario.service';
 
 @Component({
-  selector: 'app-tabla-usuario',
-  templateUrl: './tabla-usuario.component.html',
-  styleUrls: ['./tabla-usuario.component.css']
+  selector: 'app-listar-usuarios',
+  templateUrl: './listar-usuarios.component.html',
+  styleUrls: ['./listar-usuarios.component.css']
 })
-export class TablaUsuarioComponent implements OnInit {
+export class ListarUsuariosComponent implements OnInit {
   usuarios!:Usuario[]
   data!:Usuario[];
 
