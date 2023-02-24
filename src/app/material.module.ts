@@ -10,7 +10,7 @@ import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatListModule} from '@angular/material/list';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatDatepickerModule} from '@angular/material/datepicker';
-import {MatSliderModule} from '@angular/material/slider'
+import {MatSlideToggleModule} from '@angular/material/slide-toggle'
 import { MatNativeDateModule } from '@angular/material/core';
 
  
@@ -28,7 +28,7 @@ import { MatNativeDateModule } from '@angular/material/core';
     MatIconModule,
     MatPaginatorModule,
     MatDatepickerModule,
-    MatSliderModule,
+    MatSlideToggleModule,
     MatNativeDateModule,
   ],
   exports: [
@@ -43,7 +43,7 @@ import { MatNativeDateModule } from '@angular/material/core';
     MatIconModule,
     MatPaginatorModule,
     MatDatepickerModule,
-    MatSliderModule,
+    MatSlideToggleModule,
     MatNativeDateModule
   ],
   declarations: [

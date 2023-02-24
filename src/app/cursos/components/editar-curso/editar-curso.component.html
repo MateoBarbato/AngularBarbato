@@ -16,12 +16,12 @@
         <div class="row">
             <mat-form-field class="col-md-6">
                 <mat-label>Nombre</mat-label>
-                <input matInput formControlName="nombre" type="text">
+                <input matInput formControlName="nombre">
             </mat-form-field >
             
             <mat-form-field class="col-md-6">
                 <mat-label>Comision</mat-label>
-                <input matInput formControlName="comision" type="text">
+                <input matInput formControlName="comision" >
             </mat-form-field >
 
             <mat-form-field class="col-md-6">
@@ -34,15 +34,20 @@
 
             <mat-form-field class="col-md-6">
                 <mat-label>Fecha Fin</mat-label>
-                <input matInput [matDatepicker]="fechaFin" formControlName="fechaFin" type="text">
+                <input matInput [matDatepicker]="fechaFin" formControlName="fechaFin" >
                 <mat-datepicker-toggle matSuffix [for]="fechaFin"></mat-datepicker-toggle>
                 <mat-datepicker #fechaFin></mat-datepicker>
             </mat-form-field >
 
-            <mat-form-field class="col-md-6">
-                <mat-label>Inscripcion Abierta</mat-label>
-                <input matInput formControlName="inscripcionAbierta" type="text">
-            </mat-form-field >
+            <div class="col-md-6">
+                <mat-slide-toggle formControlName="inscripcionAbierta">
+                    Inscripcion Abierta
+                </mat-slide-toggle>
+            </div>
+
+            <div class="col-md-6">
+                <button mat-raised-button type="submit" >Editar</button>
+            </div>
         </div>
     </form>
 

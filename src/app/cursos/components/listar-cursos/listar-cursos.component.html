@@ -17,7 +17,7 @@
         <div class="container container-background">
             <div class="row card-table">
                 <mat-card-title class="title">Cards Cursos</mat-card-title>
-                <div class="col" *ngFor="let curso of usuariosFiltrados ">
+                <div class="col" *ngFor="let curso of cursosFiltrados">
                     <mat-card class="card">
                         <mat-card-header>
                             <mat-card-title>{{ curso.nombre }}</mat-card-title>
@@ -67,12 +67,12 @@
             
                 <ng-container matColumnDef="fechaInicio">
                     <th mat-header-cell *matHeaderCellDef="">Fecha Inicio</th>
-                    <td mat-cell  *matCellDef="let element">{{element.fechaInicio}}</td>
+                    <td mat-cell  *matCellDef="let element">{{element.fechaInicio | formatoFecha}}</td>
                 </ng-container>
 
                 <ng-container matColumnDef="fechaFin">
                     <th mat-header-cell *matHeaderCellDef="">Fecha Fin</th>
-                    <td mat-cell  *matCellDef="let element">{{element.fechaFin}}</td>
+                    <td mat-cell  *matCellDef="let element">{{element.fechaFin | formatoFecha}}</td>
                 </ng-container>
         
                 <ng-container matColumnDef="acciones">

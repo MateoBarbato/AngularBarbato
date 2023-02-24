@@ -19,7 +19,7 @@ export class ListarCursosComponent implements OnInit,AfterViewInit, OnDestroy {
   cursos$!:Observable<Curso[]>;
   subscription!:Subscription;
   subscriptionUnfiltered!:Subscription;
-  usuariosFiltrados!: Curso[];
+  cursosFiltrados!: Curso[];
   
 
   constructor(
@@ -45,10 +45,11 @@ export class ListarCursosComponent implements OnInit,AfterViewInit, OnDestroy {
     this.dataSource = new MatTableDataSource<Curso>();
     this.cursos$ = this.cursosService.obtenerCursosObservable()
     this.subscription = this.cursosService.obtenerCursosObservable().pipe(map(cursos=>cursos.filter((curso)=>curso.inscripcionAbierta == true))).subscribe((dataFiltrada)=>{
-      this.usuariosFiltrados = dataFiltrada
+      this.cursosFiltrados = dataFiltrada
     })
     this.subscriptionUnfiltered = this.cursosService.obtenerCursosObservable().subscribe((cursos:Curso[])=>{
-      this.dataSource.data = cursos
+      this.dataSource.data = cursos;
+      // this.cursos = cursos
     })
 
   }
