@@ -4,6 +4,7 @@ import { Curso } from 'src/app/models/curso';
 import { CursosService } from '../../services/cursos.service';
 import {map, Observable, Subscription } from 'rxjs';
 import { MatPaginator } from '@angular/material/paginator';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-listar-cursos',
@@ -19,9 +20,11 @@ export class ListarCursosComponent implements OnInit,AfterViewInit, OnDestroy {
   subscription!:Subscription;
   subscriptionUnfiltered!:Subscription;
   usuariosFiltrados!: Curso[];
+  
 
   constructor(
     private cursosService : CursosService,
+    private router: Router
   ){
   }
 
@@ -62,4 +65,9 @@ export class ListarCursosComponent implements OnInit,AfterViewInit, OnDestroy {
   eliminarCurso(curso:Curso) {
     this.cursosService.eliminarCurso(curso)
   }
+
+  editarCurso(curso:Curso) { 
+    this.router.navigate(['cursos/editar/' , curso])
+  }
 }
+

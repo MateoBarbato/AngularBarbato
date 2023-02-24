@@ -9,7 +9,11 @@ import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatListModule} from '@angular/material/list';
 import {MatPaginatorModule} from '@angular/material/paginator';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import {MatSliderModule} from '@angular/material/slider'
+import { MatNativeDateModule } from '@angular/material/core';
 
+ 
 
 @NgModule({
   imports: [
@@ -22,7 +26,10 @@ import {MatPaginatorModule} from '@angular/material/paginator';
     MatSidenavModule,
     MatListModule,
     MatIconModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    MatDatepickerModule,
+    MatSliderModule,
+    MatNativeDateModule,
   ],
   exports: [
     MatTableModule,
@@ -34,7 +41,10 @@ import {MatPaginatorModule} from '@angular/material/paginator';
     MatSidenavModule,
     MatListModule,
     MatIconModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    MatDatepickerModule,
+    MatSliderModule,
+    MatNativeDateModule
   ],
   declarations: [
    

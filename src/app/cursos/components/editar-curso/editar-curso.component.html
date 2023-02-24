@@ -1,1 +1,50 @@
 <p>editar-curso works!</p>
+
+<!-- 
+<div class="container">
+    <div class="col">
+        <div class="row">
+            <mat-form-field class="col"></mat-form-field class="col">
+        </div>
+    </div>
+</div> -->
+
+
+<div class="container">
+
+    <form [formGroup]="formulario" (ngSubmit)="editandoCurso()">
+        <div class="row">
+            <mat-form-field class="col-md-6">
+                <mat-label>Nombre</mat-label>
+                <input matInput formControlName="nombre" type="text">
+            </mat-form-field >
+            
+            <mat-form-field class="col-md-6">
+                <mat-label>Comision</mat-label>
+                <input matInput formControlName="comision" type="text">
+            </mat-form-field >
+
+            <mat-form-field class="col-md-6">
+                <mat-label>Fecha Inicio</mat-label>
+                <input matInput [matDatepicker]="fechaInicio" formControlName="fechaInicio">
+                <mat-datepicker-toggle matSuffix [for]="fechaInicio"></mat-datepicker-toggle>
+                <mat-datepicker #fechaInicio></mat-datepicker>
+                
+            </mat-form-field >
+
+            <mat-form-field class="col-md-6">
+                <mat-label>Fecha Fin</mat-label>
+                <input matInput [matDatepicker]="fechaFin" formControlName="fechaFin" type="text">
+                <mat-datepicker-toggle matSuffix [for]="fechaFin"></mat-datepicker-toggle>
+                <mat-datepicker #fechaFin></mat-datepicker>
+            </mat-form-field >
+
+            <mat-form-field class="col-md-6">
+                <mat-label>Inscripcion Abierta</mat-label>
+                <input matInput formControlName="inscripcionAbierta" type="text">
+            </mat-form-field >
+        </div>
+    </form>
+
+           
+</div>

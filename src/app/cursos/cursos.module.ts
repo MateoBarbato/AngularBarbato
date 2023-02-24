@@ -5,7 +5,7 @@ import {MaterialModule} from '../material.module';
 import { EditarCursoComponent } from './components/editar-curso/editar-curso.component'
 import { CursosRoutingModule } from './cursosRouting';
 import { PipesDirectivesModule } from '../pipes-directives-module.module';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AgregarCursoComponent } from './components/agregar-curso/agregar-curso.component';
 import { CursosService } from './services/cursos.service';
 
@@ -23,6 +23,7 @@ import { CursosService } from './services/cursos.service';
     PipesDirectivesModule,
     CursosRoutingModule,
     FormsModule,
+    ReactiveFormsModule
   ],
   exports:[
     ListarCursosComponent,
