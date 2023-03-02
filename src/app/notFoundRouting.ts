@@ -4,7 +4,7 @@ import { NotFoundComponent } from './core/components/not-found/not-found.compone
 
 const routes: Routes = [
   { path: 'notfound',   component:NotFoundComponent },
-  { path: '**', redirectTo:'/notfound' }
+  { path: '**', redirectTo:'/notfound' ,  }
 
 ];
 

@@ -6,8 +6,8 @@ import { ListarAlumnosComponent } from './components/listar-alumnos/listar-alumn
 import { MaterialModule } from '../material.module';
 import { PipesDirectivesModule } from '../pipes-directives-module.module';
 import { AlumnosRoutingModule } from './alumnosRouting';
-import { FormsModule } from '@angular/forms';
 import { AlumnosService } from './services/alumnos.service';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 
@@ -24,10 +24,12 @@ import { AlumnosService } from './services/alumnos.service';
     PipesDirectivesModule,
     AlumnosRoutingModule,
     FormsModule,
+    ReactiveFormsModule
   ],
   exports:[ListarAlumnosComponent,
     EditarAlumnoComponent,
     AgregarAlumnoComponent,
+    ReactiveFormsModule
   ],
     providers:[AlumnosService]
 })

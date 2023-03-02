@@ -21,6 +21,7 @@ export class EditarCursoComponent implements OnInit {
   ngOnInit(): void {
     this.activatedRoute.paramMap.subscribe((parametros)=>{
       this.formulario = new FormGroup({
+        id: new FormControl(parametros.get('id')),
         nombre: new FormControl(parametros.get('nombre')),
         comision: new FormControl(parametros.get('comision')),
         fechaInicio: new FormControl(new Date(parametros.get('fechaInicio')||'')),
@@ -32,6 +33,7 @@ export class EditarCursoComponent implements OnInit {
 
   editandoCurso(){
     let curso : Curso = {
+      id: this.formulario.value.id,
       nombre: this.formulario.value.nombre,
       comision: this.formulario.value.comision,
       fechaInicio: this.formulario.value.fechaInicio,

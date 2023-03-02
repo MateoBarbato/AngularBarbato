@@ -22,6 +22,7 @@ export class ButtonAddComponent {
 
   agregarAlumno(){
     let nuevoalumno : Alumno = {
+      id:32,
       nombre: 'Alejo',
       apellido: 'Splett',
       inscripcionAbierta:true,
