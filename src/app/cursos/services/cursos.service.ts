@@ -1,83 +1,48 @@
+
+import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject, catchError, Observable, Subscriber, throwError } from 'rxjs';import { env } from 'src/enviroment/enviroment';
 import { Curso } from '../../models/curso';
 
 @Injectable()
 export class CursosService {
-  private cursos:Curso[] = [
-    {nombre:'Angular',
-    comision:'49512',
-    profesor:{
-      nombre:'Abner',
-      correo:"asdas@gmail.com",
-      fechaRegistro: new Date(2022,7,14)},
-    inscripcionAbierta:true,
-    fechaInicio: new Date(2023, 0,31),
-    fechaFin: new Date(2023,2,28)
-    },
-    {nombre:'Angular',
-    comision:'614213',
-    profesor:{
-      nombre:'Abner',
-      correo:"asdas@gmail.com",
-      fechaRegistro: new Date(2022,7,14)},
-    inscripcionAbierta:false,
-    fechaInicio: new Date(2023, 0,31),
-    fechaFin: new Date(2023,2,28)
-    },
-    {nombre:'React',
-    comision:'123123',
-    profesor:{
-      nombre:'Caro',
-      correo:"a4123asdas@gmail.com",
-      fechaRegistro: new Date(2022,7,14)},
-    inscripcionAbierta:true,
-    fechaInicio: new Date(2023, 6,31),
-    fechaFin: new Date(2023,8,28)
-    },
-    {nombre:'React',
-    comision:'123123',
-    profesor:{
-      nombre:'Caro',
-      correo:"a4123asdas@gmail.com",
-      fechaRegistro: new Date(2022,7,14)},
-    inscripcionAbierta:true,
-    fechaInicio: new Date(2023, 6,31),
-    fechaFin: new Date(2023,8,28)
-    },
-  ]
-  private cursos$:BehaviorSubject<Curso[]>
-
-  constructor() { 
-    this.cursos$ = new BehaviorSubject(this.cursos)
-   }
+  constructor
+  (private http:HttpClient) 
+  {}
 
   obtenerCursosObservable(): Observable<Curso[]>{
-    return this.cursos$.asObservable();
+   return this.http.get<Curso[]>(`${env.apiURL}cursos`)
   }
 
-  agregarCurso(curso:Curso){
-    this.cursos.push(curso)
-    this.cursos$.next(this.cursos)
-    console.log('Curso agregado',this.cursos)
+  agregarCurso(curso:Curso):void{
+
   }
 
-  editarCurso( curso:Curso):void{
-    let indice = this.cursos.findIndex((c:Curso)=> c.comision === curso.comision)
+  editarCurso(curso:Curso):void{
 
-    if(indice > -1){
-      this.cursos[indice] = curso;
-      this.cursos$.next(this.cursos);
+  }
+
+
+  eliminarCurso(curso: Curso): Observable<Curso>{
+    return this.http.delete<Curso>(`${env.apiURL}/cursos/${curso.id}`, {
+      headers: new HttpHeaders({
+        'curso': 'Angular'
+      })
+    }).pipe(
+      catchError(this.capturarError)
+    );
+  }
+
+  private capturarError(error: HttpErrorResponse){
+    if(error.error instanceof ErrorEvent){
+      alert(`Hubo un error del lado del cliente: ${error.message}`);
+    }else{
+      alert(`Hubo un error del lado del servidor: ${error.message}`);
     }
-  }
 
-  eliminarCurso(curso:Curso):void {
-    let indice = this.cursos.findIndex((c:Curso)=> c.comision === curso.comision)
-
-    if(indice > -1){
-      this.cursos.splice(indice,1);
-      this.cursos$.next(this.cursos);
-    }
-
+    return throwError(() => new Error('Error en el procesamiento de cursos'));
   }
 }
+
+
+

@@ -1,4 +1,4 @@
-import { Curso } from "../models/curso";
+import { Curso } from "../../models/curso";
 
 export const cursos = {
     obtenerCursos: () => {

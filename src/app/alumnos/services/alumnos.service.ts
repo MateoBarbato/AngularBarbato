@@ -6,7 +6,7 @@ import { Alumno } from '../../models/alumno';
 export class AlumnosService {
 
   private alumnos:Alumno[] = [
-    { id:1,
+    { index:1,
     nombre:'Angel',
     apellido:'Perez',
     inscripcionAbierta:true,
@@ -14,7 +14,7 @@ export class AlumnosService {
     sexo:'Hombre',
     validado:true
     },
-    { id:2,
+    { index:2,
     nombre:'Pedro',
     apellido:'Perez',
     inscripcionAbierta:true,
@@ -22,7 +22,7 @@ export class AlumnosService {
     sexo:'Hombre',
     validado:true
     },
-    { id:3,
+    { index:3,
     nombre:'Angel',
     apellido:'Perez',
     inscripcionAbierta:true,
@@ -30,7 +30,7 @@ export class AlumnosService {
     sexo:'Hombre',
     validado:true
     },
-    { id:4,
+    { index:4,
     nombre:'Angel',
     apellido:'Perez',
     inscripcionAbierta:true,
@@ -38,7 +38,7 @@ export class AlumnosService {
     sexo:'Hombre',
     validado:true
     },
-    { id:5,
+    { index:5,
     nombre:'Angel',
     apellido:'Perez',
     inscripcionAbierta:true,
@@ -46,7 +46,7 @@ export class AlumnosService {
     sexo:'Hombre',
     validado:true
     },
-    { id:6,
+    { index:6,
     nombre:'Angel',
     apellido:'Perez',
     inscripcionAbierta:true,
@@ -54,7 +54,7 @@ export class AlumnosService {
     sexo:'Hombre',
     validado:true
     },
-    { id:7,
+    { index:7,
     nombre:'Angel',
     apellido:'Perez',
     inscripcionAbierta:true,
@@ -62,7 +62,7 @@ export class AlumnosService {
     sexo:'Hombre',
     validado:true
     },
-    { id:8,
+    { index:8,
     nombre:'Angel',
     apellido:'Perez',
     inscripcionAbierta:true,
@@ -70,7 +70,7 @@ export class AlumnosService {
     sexo:'Hombre',
     validado:true
     },
-    { id:9,
+    { index:9,
     nombre:'Angel',
     apellido:'Perez',
     inscripcionAbierta:true,
@@ -78,7 +78,7 @@ export class AlumnosService {
     sexo:'Hombre',
     validado:true
     },
-    { id:10,
+    { index:10,
     nombre:'Angel',
     apellido:'Perez',
     inscripcionAbierta:true,
@@ -86,7 +86,7 @@ export class AlumnosService {
     sexo:'Hombre',
     validado:true
     },
-    { id:11,
+    { index:11,
     nombre:'Angel',
     apellido:'Perez',
     inscripcionAbierta:true,
@@ -94,7 +94,7 @@ export class AlumnosService {
     sexo:'Hombre',
     validado:true
     },
-    { id:12,
+    { index:12,
     nombre:'Angel',
     apellido:'Perez',
     inscripcionAbierta:true,
@@ -102,7 +102,7 @@ export class AlumnosService {
     sexo:'Hombre',
     validado:true
     },
-    { id:13,
+    { index:13,
     nombre:'Angel',
     apellido:'Perez',
     inscripcionAbierta:true,
@@ -110,7 +110,7 @@ export class AlumnosService {
     sexo:'Hombre',
     validado:true
     },
-    { id:14,
+    { index:14,
     nombre:'Angel',
     apellido:'Perez',
     inscripcionAbierta:true,
@@ -118,7 +118,7 @@ export class AlumnosService {
     sexo:'Hombre',
     validado:true
     },
-    { id:15,
+    { index:15,
     nombre:'Angel',
     apellido:'Perez',
     inscripcionAbierta:true,
@@ -126,7 +126,7 @@ export class AlumnosService {
     sexo:'Hombre',
     validado:true
     },
-    { id:16,
+    { index:16,
     nombre:'Angel',
     apellido:'Perez',
     inscripcionAbierta:true,
@@ -158,7 +158,7 @@ export class AlumnosService {
 
   editarAlumno( alumno:Alumno):void{
     console.log(alumno)
-    let indice = this.alumnos.findIndex((a:Alumno)=> a.id === alumno.id)
+    let indice = this.alumnos.findIndex((a:Alumno)=> a.index === alumno.index)
 
     if(indice > -1){
       this.alumnos[indice] = alumno;
@@ -172,7 +172,7 @@ export class AlumnosService {
   }
 
   eliminarCurso(id:number):void {
-    let indice = this.alumnos.findIndex((a:Alumno)=> a.id === id)
+    let indice = this.alumnos.findIndex((a:Alumno)=> a.index === id)
 
     if(indice > -1){
       this.alumnos.splice(indice,1);

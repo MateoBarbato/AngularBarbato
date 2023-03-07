@@ -7,8 +7,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SidebarComponent } from './core/components/sidebar/sidebar.component'
 import {MaterialModule} from './material.module'
 import { ButtonAddComponent } from './core/components/button-add/button-add.component';
-import { ListarUsuariosComponent } from './core/components/listar-usuarios/listar-usuarios.component';
-import { UsuarioService } from './services/usuario.service';
+import { UsuarioService } from './core/services/usuario.service'
 import { AppRoutingModule } from './app-routing.module';
 import { NotFoundComponent } from './core/components/not-found/not-found.component';
 import { ToolbarComponent } from './core/components/toolbar/toolbar.component';
@@ -19,6 +18,9 @@ import { AlumnosModule } from './alumnos/alumnos.module';
 import { AlumnosRoutingModule } from './alumnos/alumnosRouting';
 import { NotfoundRoutingModule } from './notFoundRouting';
 import { InicioComponent } from './core/components/inicio/inicio.component';
+import { HttpClientModule } from '@angular/common/http';
+import { CursosService } from './cursos/services/cursos.service';
+import { AuthRoutingModule } from './auth/auth.routing.module';
 
 
 @NgModule({
@@ -27,7 +29,6 @@ import { InicioComponent } from './core/components/inicio/inicio.component';
     FormularioReactivoComponent,
     SidebarComponent,
     ButtonAddComponent,
-    ListarUsuariosComponent,
     NotFoundComponent,
     ToolbarComponent,
     InicioComponent
@@ -39,15 +40,16 @@ import { InicioComponent } from './core/components/inicio/inicio.component';
     BrowserAnimationsModule,
     MaterialModule,
     AppRoutingModule,
-    CursosModule,
     AlumnosModule,
     CursosRoutingModule,
     AlumnosRoutingModule,
+    AuthRoutingModule,
     PipesDirectivesModule,
-    NotfoundRoutingModule
+    NotfoundRoutingModule,
+    HttpClientModule
 
   ],
-  providers:[UsuarioService],
+  providers:[UsuarioService,CursosService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

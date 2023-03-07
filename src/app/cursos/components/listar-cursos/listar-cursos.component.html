@@ -17,7 +17,7 @@
         <div class="container container-background">
             <div class="row card-table">
                 <mat-card-title class="title">Cards Cursos</mat-card-title>
-                <div class="col" *ngFor="let curso of cursosFiltrados">
+                <div class="col" *ngFor="let curso of cursos$ | async">
                     <mat-card class="card">
                         <mat-card-header>
                             <mat-card-title>{{ curso.nombre }}</mat-card-title>
@@ -42,7 +42,7 @@
         </div>
     </div>
     
-    <div class="container-table">
+    <!-- <div class="container-table">
 
         <div class="table-background">
             <mat-card-title class="title">Tabla Cursos</mat-card-title>
@@ -98,6 +98,6 @@
                         aria-label="Select page of periodic elements">
         </mat-paginator>
         </div>
-    </div>
+    </div> -->
 </div>
 

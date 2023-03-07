@@ -39,7 +39,7 @@ export class EditarAlumnoComponent implements OnInit {
 
   editandoAlumno(){
     let alumno: Alumno ={
-      id:this.formulario.value.id,
+      index:this.formulario.value.index,
       nombre: this.formulario.value.nombre,
       apellido: this.formulario.value.apellido,
       inscripcionAbierta: this.formulario.value.inscripcionAbierta,

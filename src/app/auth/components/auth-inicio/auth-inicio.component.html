@@ -1,0 +1,22 @@
+<div class="container">
+    <form [formGroup]="formulario" class="row d-flex justify-content-around">
+        <mat-form-field class="col-md-5" appearance="fill">
+        <mat-label>User Name</mat-label>
+            <input matInput formControlName="usuario" placeholder="Enter your name" name="usename">
+        </mat-form-field>
+        <mat-form-field class="col-md-5" appearance="fill">
+            <mat-label>Password</mat-label>
+            <input matInput formControlName="contrasena" placeholder="Enter your password" value="" name="password" type="password" >
+        </mat-form-field>
+        <div class="my-3 col-md-2">
+            <mat-slide-toggle formControlName="esAdmin">
+                Admin
+            </mat-slide-toggle>
+        </div>
+        <div class="my-5 col d-flex justify-content-center">
+            <button mat-raised-button class="mx-2" color="primary" (click)="submit()">Submit</button>
+            <span *ngIf="show"> <button mat-button color="accent">Login success !!</button></span>
+        </div>
+    </form>
+</div>
+<router-outlet></router-outlet>

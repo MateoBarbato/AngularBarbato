@@ -5,6 +5,8 @@ import { CursosService } from '../../services/cursos.service';
 import {map, Observable, Subscription } from 'rxjs';
 import { MatPaginator } from '@angular/material/paginator';
 import { Router } from '@angular/router';
+import { SesionService } from 'src/app/core/services/sesion.service';
+import { Sesion } from 'src/app/models/sesion';
 
 @Component({
   selector: 'app-listar-cursos',
@@ -18,39 +20,40 @@ export class ListarCursosComponent implements OnInit,AfterViewInit, OnDestroy {
   cursos!:Curso[];
   cursos$!:Observable<Curso[]>;
   subscription!:Subscription;
-  subscriptionUnfiltered!:Subscription;
-  cursosFiltrados!: Curso[];
-  
+  subscriptionEliminate!:Subscription;  
 
   constructor(
     private cursosService : CursosService,
-    private router: Router
+    private router: Router,
+    private sesion: SesionService
   ){
   }
 
-  filterUser(filterTerm: string){
-    if(this.cursos.length === 0 || filterTerm == ''){
-      return this.cursos
-    } else {
-      return this.cursos.filter((curso) => {
-        return curso.nombre.toLowerCase().includes(filterTerm.toLowerCase())})
-      }
-    };
-
     @ViewChild(MatPaginator) paginator!: MatPaginator;
 
-
+  eliminarCurso(curso: Curso) {
+      this.subscriptionEliminate = this.cursosService.eliminarCurso(curso).subscribe((curso:Curso)=>{
+          alert(`${curso.nombre} eliminado`)
+          this.cursos$ = this.cursosService.obtenerCursosObservable();
+         
+      })
+  
+  }
+  
+  editarCurso(curso:Curso) { 
+      this.router.navigate(['cursos/editar/' , curso])
+  }
 
   ngOnInit(): void {
+    this.sesion.obtenerSesion().subscribe((sesion:Sesion)=>{
+      console.log('Estado de la sesion', sesion)
+      if(!sesion.sesionActiva){
+        this.router.navigate(['auth/login'])
+      }
+    })
     this.dataSource = new MatTableDataSource<Curso>();
     this.cursos$ = this.cursosService.obtenerCursosObservable()
-    this.subscription = this.cursosService.obtenerCursosObservable().pipe(map(cursos=>cursos.filter((curso)=>curso.inscripcionAbierta == true))).subscribe((dataFiltrada)=>{
-      this.cursosFiltrados = dataFiltrada
-    })
-    this.subscriptionUnfiltered = this.cursosService.obtenerCursosObservable().subscribe((cursos:Curso[])=>{
-      this.dataSource.data = cursos;
-      // this.cursos = cursos
-    })
+    this.subscription = this.cursos$.subscribe()
 
   }
 
@@ -60,15 +63,11 @@ export class ListarCursosComponent implements OnInit,AfterViewInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.subscription.unsubscribe();
-    this.subscriptionUnfiltered.unsubscribe();
+    if(this.subscriptionEliminate){
+      this.subscriptionEliminate.unsubscribe();
+    }
   }
 
-  eliminarCurso(curso:Curso) {
-    this.cursosService.eliminarCurso(curso)
-  }
-
-  editarCurso(curso:Curso) { 
-    this.router.navigate(['cursos/editar/' , curso])
-  }
+  
 }
 

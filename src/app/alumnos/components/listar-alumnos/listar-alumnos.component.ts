@@ -3,7 +3,9 @@ import {MatPaginator} from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
+import { SesionService } from 'src/app/core/services/sesion.service';
 import { Alumno } from 'src/app/models/alumno';
+import { Sesion } from 'src/app/models/sesion';
 import { AlumnosService } from '../../services/alumnos.service';
 
 
@@ -22,7 +24,8 @@ export class ListarAlumnosComponent implements AfterViewInit,OnDestroy {
 
   constructor(
     private router:Router,
-    private alumnosService: AlumnosService
+    private alumnosService: AlumnosService,
+    private sesion:SesionService
   ){  
   }
   
@@ -32,7 +35,7 @@ export class ListarAlumnosComponent implements AfterViewInit,OnDestroy {
   editarAlumno(id:number){
     // NECESITO OBTENER EL ID DE CADA ALUMNO , ALUMNOS TODAVIA NO TIENE ID (FIREBASE PROBABLY)
     this.alumnos =this.alumnosService.obtenerAlumnos()
-    let alumno = this.alumnos.filter((alumno:Alumno)=>alumno.id == id+1)
+    let alumno = this.alumnos.filter((alumno:Alumno)=>alumno.index == id+1)
     console.log(alumno)
     this.router.navigate(['alumnos/editar/' , alumno[0]])
   }
@@ -46,6 +49,12 @@ export class ListarAlumnosComponent implements AfterViewInit,OnDestroy {
 
 
   ngOnInit(): void {
+    this.sesion.obtenerSesion().subscribe((sesion:Sesion)=>{
+      console.log('Estado de la sesion', sesion)
+      if(!sesion.sesionActiva){
+        this.router.navigate(['auth/login'])
+      }
+    })
     this.dataSource = new MatTableDataSource<Alumno>();
     this.suscripcion = this.alumnosService.obtenerAlumnosObservable().subscribe((alumnos: Alumno[]) => {
     this.dataSource.data = alumnos;

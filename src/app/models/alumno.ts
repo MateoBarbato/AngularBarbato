@@ -1,5 +1,5 @@
 export interface Alumno {
-    id:number,
+    index:number,
     nombre:string,
     apellido:string,
     inscripcionAbierta:boolean,
