@@ -35,7 +35,6 @@ export class ListarCursosComponent implements OnInit,AfterViewInit, OnDestroy {
       this.subscriptionEliminate = this.cursosService.eliminarCurso(curso).subscribe((curso:Curso)=>{
           alert(`${curso.nombre} eliminado`)
           this.cursos$ = this.cursosService.obtenerCursosObservable();
-         
       })
   
   }

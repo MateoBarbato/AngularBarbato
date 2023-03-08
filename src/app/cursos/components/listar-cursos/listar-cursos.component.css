@@ -14,6 +14,11 @@
     font-size: 20px;
 }
 
+.text-nonrezise{
+    resize: none;
+    line-break: strict;
+}
+
 
 .container { 
     padding: 2vh 2vh 10vh 2vh;

@@ -11,15 +11,27 @@ export class CursosService {
   {}
 
   obtenerCursosObservable(): Observable<Curso[]>{
-   return this.http.get<Curso[]>(`${env.apiURL}cursos`)
+   return this.http.get<Curso[]>(`${env.apiURL}/cursos`)
   }
 
-  agregarCurso(curso:Curso):void{
-
+  agregarCurso(curso:Curso): Observable<Curso>{
+    return this.http.post<Curso>(`${env.apiURL}/cursos`, curso, {
+      headers: new HttpHeaders({
+        'encoding': 'UTF-8'
+      })
+    }).pipe(
+      catchError(this.capturarError)
+    );
   }
 
-  editarCurso(curso:Curso):void{
-
+  editarCurso(curso:Curso): Observable<Curso>{
+    return this.http.put<Curso>(`${env.apiURL}/cursos/${curso.id}`, curso, {
+      headers: new HttpHeaders({
+        'usuario': 'Abner'
+      })
+    }).pipe(
+      catchError(this.capturarError)
+    );
   }
 
 

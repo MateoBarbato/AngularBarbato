@@ -38,7 +38,7 @@
                     <button (click)="editarAlumno(i)" mat-icon-button >
                         <mat-icon color="accent">edit</mat-icon>
                     </button>
-                    <button (click)="eliminarAlumno(i)" mat-icon-button >
+                    <button (click)="eliminarAlumno(i + (paginator.pageIndex * paginator.pageSize))" mat-icon-button >
                         <mat-icon color="warn">delete</mat-icon>
                     </button>
                     

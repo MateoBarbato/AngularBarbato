@@ -22,19 +22,18 @@ export class AgregarCursoComponent implements OnInit {
   ngOnInit(): void {
     this.activatedRoute.paramMap.subscribe((parametros)=>{
       this.formulario = new FormGroup({
-        id: new FormControl(parametros.get('id')),
-        nombre: new FormControl(parametros.get('nombre')),
-        comision: new FormControl(parametros.get('comision')),
-        fechaInicio: new FormControl(new Date(parametros.get('fechaInicio')||'')),
-        fechaFin: new FormControl(new Date(parametros.get('fechaFin')||'')),
-        inscripcionAbierta: new FormControl(parametros.get('inscripcionAbierta' || false)),
+        nombre: new FormControl(''),
+        comision: new FormControl(''),
+        fechaInicio: new FormControl(''),
+        fechaFin: new FormControl(''),
+        inscripcionAbierta: new FormControl(false),
       })
     })
   }
 
   agregandoCurso(){
     let curso : Curso = {
-      id: this.formulario.value.id,
+      id: '',
       nombre: this.formulario.value.nombre,
       comision: this.formulario.value.comision,
       fechaInicio: this.formulario.value.fechaInicio,
@@ -47,8 +46,10 @@ export class AgregarCursoComponent implements OnInit {
       }
     }
 
-    this.cursosService.agregarCurso(curso);
-    this.router.navigate(['cursos/listar'])
+    this.cursosService.agregarCurso(curso).subscribe((curso: Curso) => {
+      alert(`${curso.nombre} agregado satisfactoriamente`);
+      this.router.navigate(['cursos/listar']);
+    });
   }
 
 

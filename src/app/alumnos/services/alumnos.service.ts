@@ -1,187 +1,61 @@
+import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject, catchError, Observable, throwError } from 'rxjs';
+import { env } from 'src/enviroment/enviroment';
 import { Alumno } from '../../models/alumno';
 
 @Injectable()
 export class AlumnosService {
 
-  private alumnos:Alumno[] = [
-    { index:1,
-    nombre:'Angel',
-    apellido:'Perez',
-    inscripcionAbierta:true,
-    edad:21,
-    sexo:'Hombre',
-    validado:true
-    },
-    { index:2,
-    nombre:'Pedro',
-    apellido:'Perez',
-    inscripcionAbierta:true,
-    edad:21,
-    sexo:'Hombre',
-    validado:true
-    },
-    { index:3,
-    nombre:'Angel',
-    apellido:'Perez',
-    inscripcionAbierta:true,
-    edad:21,
-    sexo:'Hombre',
-    validado:true
-    },
-    { index:4,
-    nombre:'Angel',
-    apellido:'Perez',
-    inscripcionAbierta:true,
-    edad:21,
-    sexo:'Hombre',
-    validado:true
-    },
-    { index:5,
-    nombre:'Angel',
-    apellido:'Perez',
-    inscripcionAbierta:true,
-    edad:21,
-    sexo:'Hombre',
-    validado:true
-    },
-    { index:6,
-    nombre:'Angel',
-    apellido:'Perez',
-    inscripcionAbierta:true,
-    edad:21,
-    sexo:'Hombre',
-    validado:true
-    },
-    { index:7,
-    nombre:'Angel',
-    apellido:'Perez',
-    inscripcionAbierta:true,
-    edad:21,
-    sexo:'Hombre',
-    validado:true
-    },
-    { index:8,
-    nombre:'Angel',
-    apellido:'Perez',
-    inscripcionAbierta:true,
-    edad:21,
-    sexo:'Hombre',
-    validado:true
-    },
-    { index:9,
-    nombre:'Angel',
-    apellido:'Perez',
-    inscripcionAbierta:true,
-    edad:21,
-    sexo:'Hombre',
-    validado:true
-    },
-    { index:10,
-    nombre:'Angel',
-    apellido:'Perez',
-    inscripcionAbierta:true,
-    edad:21,
-    sexo:'Hombre',
-    validado:true
-    },
-    { index:11,
-    nombre:'Angel',
-    apellido:'Perez',
-    inscripcionAbierta:true,
-    edad:21,
-    sexo:'Hombre',
-    validado:true
-    },
-    { index:12,
-    nombre:'Angel',
-    apellido:'Perez',
-    inscripcionAbierta:true,
-    edad:21,
-    sexo:'Hombre',
-    validado:true
-    },
-    { index:13,
-    nombre:'Angel',
-    apellido:'Perez',
-    inscripcionAbierta:true,
-    edad:21,
-    sexo:'Hombre',
-    validado:true
-    },
-    { index:14,
-    nombre:'Angel',
-    apellido:'Perez',
-    inscripcionAbierta:true,
-    edad:21,
-    sexo:'Hombre',
-    validado:true
-    },
-    { index:15,
-    nombre:'Angel',
-    apellido:'Perez',
-    inscripcionAbierta:true,
-    edad:21,
-    sexo:'Hombre',
-    validado:true
-    },
-    { index:16,
-    nombre:'Angel',
-    apellido:'Perez',
-    inscripcionAbierta:true,
-    edad:21,
-    sexo:'Hombre',
-    validado:true
-    }]
 
   private alumnos$!:BehaviorSubject<Alumno[]>;
 
 
-  constructor() { 
+  constructor(
+    private http:HttpClient
+  ) { 
 
-    this.alumnos$ = new BehaviorSubject(this.alumnos);
    }
 
   obtenerAlumnosObservable(): Observable<Alumno[]>{
-    return this.alumnos$.asObservable();
-  }
-  obtenerAlumnos(): Alumno[]{
-    return this.alumnos
+    return this.http.get<Alumno[]>(`${env.apiURL}/alumnos`)
   }
 
-  agregarAlumno(alumno:Alumno){
-    this.alumnos.push(alumno)
-    this.alumnos$.next(this.alumnos);
-    console.log('Alumno agregado',this.alumnos)
+
+  agregarAlumno(alumno:Alumno):Observable<Alumno>{
+    return this.http.post<Alumno>(`${env.apiURL}/alumnos`,alumno,{
+      headers: new HttpHeaders({
+        'encoding': 'UTF-8'
+      })
+    }).pipe(
+      catchError(this.capturarError)
+    );
   }
 
-  editarAlumno( alumno:Alumno):void{
-    console.log(alumno)
-    let indice = this.alumnos.findIndex((a:Alumno)=> a.index === alumno.index)
-
-    if(indice > -1){
-      this.alumnos[indice] = alumno;
-      this.alumnos$.next(this.alumnos);
-      console.log('Alumno agregado',this.alumnos)
-    }else{
-      console.log('No encontro el indice')
-
-    }
+  editarAlumno( alumno:Alumno):Observable<Alumno>{
+    return this.http.put<Alumno>(`${env.apiURL}/cursos/${alumno.id}`, alumno, {
+      headers: new HttpHeaders({
+      })
+    }).pipe(
+      catchError(this.capturarError)
+    )
     
   }
 
-  eliminarCurso(id:number):void {
-    let indice = this.alumnos.findIndex((a:Alumno)=> a.index === id)
-
-    if(indice > -1){
-      this.alumnos.splice(indice,1);
-      this.alumnos$.next(this.alumnos);
-    }else{
-      console.log('No encontro el indice')
-
+  eliminarAlumno(alumno:Alumno): Observable<Alumno> {
+      return this.http.delete<Alumno>(`${env.apiURL}/alumnos/${alumno.id}`).pipe(
+        catchError(this.capturarError)
+      );
     }
 
-  }
+    private capturarError(error: HttpErrorResponse){
+      if(error.error instanceof ErrorEvent){
+        alert(`Hubo un error del lado del cliente: ${error.message}`);
+      }else{
+        alert(`Hubo un error del lado del servidor: ${error.message}`);
+      }
+  
+      return throwError(() => new Error('Error en el procesamiento de cursos'));
+    }
 }
 
