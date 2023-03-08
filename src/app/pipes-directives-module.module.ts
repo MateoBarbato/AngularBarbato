@@ -5,7 +5,6 @@ import { BooleanEstiloDirective } from './directives/boolean-estilo.directive';
 import { FormatoFechaPipe } from './pipes/formato-fecha.pipe';
 import { FiltroPipe } from './pipes/filtro.pipe';
 import { NombreApellidoPipe } from './pipes/nombre-apellido.pipe';
-import { TitleFontDirective } from './directives/title-font.directive';
 
 
 
@@ -16,7 +15,7 @@ import { TitleFontDirective } from './directives/title-font.directive';
     FormatoFechaPipe,
     FiltroPipe,
     NombreApellidoPipe,
-    TitleFontDirective],
+  ],
   imports: [
     CommonModule,
   ],
@@ -26,7 +25,7 @@ import { TitleFontDirective } from './directives/title-font.directive';
     FormatoFechaPipe,
     FiltroPipe,
     NombreApellidoPipe,
-    TitleFontDirective]
+  ]
 
 })
 export class PipesDirectivesModule { }

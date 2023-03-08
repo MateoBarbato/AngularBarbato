@@ -44,7 +44,6 @@ import { AuthRoutingModule } from './auth/auth.routing.module';
     CursosRoutingModule,
     AlumnosRoutingModule,
     AuthRoutingModule,
-    PipesDirectivesModule,
     NotfoundRoutingModule,
     HttpClientModule
 

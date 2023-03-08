@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, RequiredValidator, Validators } from '@angular/forms';
 import { Usuario } from 'src/app/models/usuario';
 import { LoginService } from '../../services/login.service';
 
@@ -24,16 +24,19 @@ submit(){
     contrasena : this.formulario.value.contrasena,
     esAdmin : this.formulario.value.esAdmin
   }
-  this.login.login(usuario)
-  this.show = true
+  
+  if(usuario.usuario && usuario.contrasena){
+    this.show = true
+    this.login.login(usuario)
+  }
 }
 
 
 
 ngOnInit(): void {
   this.formulario= new FormGroup({
-    usuario: new FormControl(),
-    contrasena: new FormControl(),
+    usuario: new FormControl('',[Validators.required]),
+    contrasena: new FormControl('',[Validators.required]),
     esAdmin: new FormControl(false)
   })
 }
