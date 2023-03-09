@@ -4,10 +4,10 @@ import { ListarCursosComponent } from './components/listar-cursos/listar-cursos.
 import {MaterialModule} from '../material.module';
 import { EditarCursoComponent } from './components/editar-curso/editar-curso.component'
 import { CursosRoutingModule } from './cursosRouting';
-import { PipesDirectivesModule } from '../pipes-directives-module.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AgregarCursoComponent } from './components/agregar-curso/agregar-curso.component';
 import { CursosService } from './services/cursos.service';
+import { PipesDirectivesModule } from '../pipes-directives-module.module';
 
 
 
@@ -20,10 +20,10 @@ import { CursosService } from './services/cursos.service';
   imports: [
     CommonModule,
     MaterialModule,
-    PipesDirectivesModule,
     CursosRoutingModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    PipesDirectivesModule
   ],
   exports:[
     ListarCursosComponent,

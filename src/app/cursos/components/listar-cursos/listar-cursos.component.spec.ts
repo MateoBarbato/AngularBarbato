@@ -2,7 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ListarCursosComponent } from './listar-cursos.component';
 
-describe('ListarCursosComponent', () => {
+describe('Pruebas de Listas-cursos-component', () => {
   let component: ListarCursosComponent;
   let fixture: ComponentFixture<ListarCursosComponent>;
 
@@ -17,7 +17,7 @@ describe('ListarCursosComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it('El componente se crea correctamente.', () => {
     expect(component).toBeTruthy();
   });
 });

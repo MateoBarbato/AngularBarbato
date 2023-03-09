@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Curso } from 'src/app/models/curso';
+import { Profesor } from 'src/app/models/profesor';
 import { CursosService } from '../../services/cursos.service';
 
 @Component({
@@ -11,13 +12,29 @@ import { CursosService } from '../../services/cursos.service';
 })
 export class AgregarCursoComponent implements OnInit {
   formulario!:FormGroup;
+  profesores:Profesor[] = [
+    {nombre:'Abner',
+    correo:'Abner@gmail.com',
+    fechaRegistro: new Date(),
+    },
+    {nombre:'Caro',
+    correo:'Caro@gmail.com',
+    fechaRegistro: new Date(),
+  },
+    {nombre:'Sebas',
+    correo:'Sebas@gmail.com',
+    fechaRegistro: new Date(),
+  },
+
+  ];
 
   constructor(
     private cursosService : CursosService,
     private activatedRoute:ActivatedRoute,
     private router:Router
   ){}
-
+  
+  
  
   ngOnInit(): void {
     this.activatedRoute.paramMap.subscribe((parametros)=>{
@@ -27,6 +44,7 @@ export class AgregarCursoComponent implements OnInit {
         fechaInicio: new FormControl(''),
         fechaFin: new FormControl(''),
         inscripcionAbierta: new FormControl(false),
+        profesor: new FormControl(),
       })
     })
   }
@@ -39,11 +57,7 @@ export class AgregarCursoComponent implements OnInit {
       fechaInicio: this.formulario.value.fechaInicio,
       fechaFin: this.formulario.value.fechaFin,
       inscripcionAbierta: this.formulario.value.inscripcionAbierta,
-      profesor:{
-        nombre:'Abner',
-        correo:'abner@gmail.com',
-        fechaRegistro: new Date()
-      }
+      profesor:this.formulario.value.profesor
     }
 
     this.cursosService.agregarCurso(curso).subscribe((curso: Curso) => {
