@@ -3,3 +3,22 @@
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+
+.color-verde{
+    color: #ffffff !important;
+    padding: 0px 10px 0px 10px !important;
+    border-radius: 5px !important ;
+    opacity: '55%' !important;
+    background-color: #4caf4f81 !important;
+    text-align: center !important;
+}
+
+.color-rojo{
+    color: #ffffff !important;
+    padding: 0px 10px 0px 10px !important;
+    border-radius: 5px !important;
+    opacity: '55%' !important;
+    background-color: #f4433681 !important;
+    text-align: center !important; 
+}
