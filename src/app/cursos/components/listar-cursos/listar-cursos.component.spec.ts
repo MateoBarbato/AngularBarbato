@@ -20,4 +20,5 @@ describe('Pruebas de Listas-cursos-component', () => {
   it('El componente se crea correctamente.', () => {
     expect(component).toBeTruthy();
   });
+   
 });
