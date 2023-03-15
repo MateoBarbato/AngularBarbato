@@ -22,6 +22,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { CursosService } from './cursos/services/cursos.service';
 import { AuthRoutingModule } from './auth/auth.routing.module';
 import { AlumnosService } from './alumnos/services/alumnos.service';
+import { StoreModule } from '@ngrx/store';
 
 
 
@@ -50,6 +51,7 @@ import { AlumnosService } from './alumnos/services/alumnos.service';
     NotfoundRoutingModule,
     PipesDirectivesModule,
     HttpClientModule,
+    StoreModule.forRoot({}, {}),
 
   ],
   providers:[UsuarioService,CursosService,AlumnosService],
