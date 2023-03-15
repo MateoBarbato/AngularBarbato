@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+
 import { Curso } from 'src/app/models/curso';
 import {CursosService} from '../../services/cursos.service'
 @Component({
@@ -8,8 +9,9 @@ import {CursosService} from '../../services/cursos.service'
   templateUrl: './editar-curso.component.html',
   styleUrls: ['./editar-curso.component.css']
 })
-export class EditarCursoComponent implements OnInit {
+export class EditarCursoComponent implements OnInit{
   formulario!:FormGroup;
+
 
   constructor(
     private cursosService : CursosService,
@@ -21,11 +23,11 @@ export class EditarCursoComponent implements OnInit {
   ngOnInit(): void {
     this.activatedRoute.paramMap.subscribe((parametros)=>{
       this.formulario = new FormGroup({
-        id: new FormControl(parametros.get('id')),
-        nombre: new FormControl(parametros.get('nombre')),
-        comision: new FormControl(parametros.get('comision')),
-        fechaInicio: new FormControl(new Date(parametros.get('fechaInicio')||'')),
-        fechaFin: new FormControl(new Date(parametros.get('fechaFin')||'')),
+        id: new FormControl(parametros.get('id'),Validators.required),
+        nombre: new FormControl(parametros.get('nombre'),Validators.required),
+        comision: new FormControl(parametros.get('comision'),Validators.required),
+        fechaInicio: new FormControl(new Date(parametros.get('fechaInicio')||''),Validators.required),
+        fechaFin: new FormControl(new Date(parametros.get('fechaFin')||''),Validators.required),
         inscripcionAbierta: new FormControl(parametros.get('inscripcionAbierta' || false)),
       })
     })
@@ -43,12 +45,16 @@ export class EditarCursoComponent implements OnInit {
         nombre:'Abner',
         correo:'abner@gmail.com',
         fechaRegistro: new Date()
-      }
-    }
-
-    this.cursosService.editarCurso(curso);
-    this.router.navigate(['cursos/listar'])
-  }
-
+      }}
+    
+    if(this.formulario.status=='VALID'){
+      this.cursosService.editarCurso(curso).subscribe((curso:Curso)=>{
+        alert(`El curso: ${curso.nombre} fue editado satisfactoriamente`)
+      })
+      setTimeout(()=>this.router.navigate(['cursos/listar']),1000)
+    } else {
+      alert('Los campos maracados en rojo son obligatorios')
+    }}
+  
 
 }

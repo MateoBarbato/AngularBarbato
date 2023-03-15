@@ -1,14 +1,27 @@
-import { NO_ERRORS_SCHEMA } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
+import { ReactiveFormsModule } from '@angular/forms';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppComponent } from './app.component';
+import { AppModule } from './app.module';
+import { ButtonAddComponent } from './core/components/button-add/button-add.component';
+import { SidebarComponent } from './core/components/sidebar/sidebar.component';
+import { ToolbarComponent } from './core/components/toolbar/toolbar.component';
+import { MaterialModule } from './material.module';
 
 describe('AppComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [
-        AppComponent
+        AppComponent,
+        ToolbarComponent,
+        SidebarComponent,
+        ButtonAddComponent
       ],
-      schemas: [NO_ERRORS_SCHEMA]
+      imports:[
+        AppModule,
+        MaterialModule,],
+      
     }).compileComponents();
   });
 

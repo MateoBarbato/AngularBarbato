@@ -5,10 +5,13 @@ import { AlumnosService } from './alumnos.service';
 describe('AlumnosService', () => {
   let service: AlumnosService;
 
-  beforeEach(() => TestBed.configureTestingModule({
+  beforeEach(() => {
+    TestBed.configureTestingModule({
     imports: [HttpClientTestingModule], 
     providers: [AlumnosService]
-  }));
+  })
+  service = TestBed.inject(AlumnosService);
+});
 
   it('should be created', () => {
     expect(service).toBeTruthy();

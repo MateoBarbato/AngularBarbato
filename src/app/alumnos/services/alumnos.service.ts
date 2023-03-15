@@ -32,14 +32,14 @@ export class AlumnosService {
     );
   }
 
-  editarAlumno( alumno:Alumno):Observable<Alumno>{
-    return this.http.put<Alumno>(`${env.apiURL}/cursos/${alumno.id}`, alumno, {
+  editarAlumno(alumno:Alumno):Observable<Alumno>{
+    return this.http.put<Alumno>(`${env.apiURL}/alumnos/${alumno.id}`, alumno, {
       headers: new HttpHeaders({
+        'usuario':'UsuarioAEditar'
       })
     }).pipe(
       catchError(this.capturarError)
     )
-    
   }
 
   eliminarAlumno(alumno:Alumno): Observable<Alumno> {
@@ -48,7 +48,7 @@ export class AlumnosService {
       );
     }
 
-    private capturarError(error: HttpErrorResponse){
+  private capturarError(error: HttpErrorResponse){
       if(error.error instanceof ErrorEvent){
         alert(`Hubo un error del lado del cliente: ${error.message}`);
       }else{
@@ -56,6 +56,6 @@ export class AlumnosService {
       }
   
       return throwError(() => new Error('Error en el procesamiento de cursos'));
-    }
+  }
 }
 

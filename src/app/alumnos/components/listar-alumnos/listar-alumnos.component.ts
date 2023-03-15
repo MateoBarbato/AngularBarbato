@@ -36,9 +36,8 @@ export class ListarAlumnosComponent implements AfterViewInit,OnDestroy {
 
 
   editarAlumno(id:number){
-    console.log(id)
-    console.log(this.alumnos[id])
-    this.router.navigate(['alumnos/editar/' , this.alumnos[id]])
+     let alumnoeditado= this.alumnos[id]
+    this.router.navigate(['alumnos/editar/' , alumnoeditado])
   }
 
   eliminarAlumno(id:number){

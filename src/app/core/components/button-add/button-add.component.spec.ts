@@ -1,5 +1,7 @@
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { AppModule } from 'src/app/app.module';
+import { MaterialModule } from 'src/app/material.module';
 
 import { ButtonAddComponent } from './button-add.component';
 
@@ -10,7 +12,8 @@ describe('ButtonAddComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [ ButtonAddComponent ],
-      schemas: [NO_ERRORS_SCHEMA]
+      imports:[MaterialModule,AppModule]
+      // schemas: [NO_ERRORS_SCHEMA]
     })
     .compileComponents();
 

@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+
 import { Curso } from 'src/app/models/curso';
 import { CursosService } from '../../services/cursos.service';
 
@@ -9,8 +10,9 @@ import { CursosService } from '../../services/cursos.service';
   templateUrl: './agregar-curso.component.html',
   styleUrls: ['./agregar-curso.component.css']
 })
-export class AgregarCursoComponent implements OnInit {
+export class AgregarCursoComponent implements OnInit{
   formulario!:FormGroup;
+
 
   constructor(
     private cursosService : CursosService,
@@ -22,10 +24,10 @@ export class AgregarCursoComponent implements OnInit {
   ngOnInit(): void {
     this.activatedRoute.paramMap.subscribe((parametros)=>{
       this.formulario = new FormGroup({
-        nombre: new FormControl(''),
-        comision: new FormControl(''),
-        fechaInicio: new FormControl(''),
-        fechaFin: new FormControl(''),
+        nombre: new FormControl('',Validators.required),
+        comision: new FormControl('',Validators.required),
+        fechaInicio: new FormControl('',Validators.required),
+        fechaFin: new FormControl('',Validators.required),
         inscripcionAbierta: new FormControl(false),
       })
     })
@@ -43,14 +45,16 @@ export class AgregarCursoComponent implements OnInit {
         nombre:'Abner',
         correo:'abner@gmail.com',
         fechaRegistro: new Date()
-      }
-    }
+      }}
 
-    this.cursosService.agregarCurso(curso).subscribe((curso: Curso) => {
-      alert(`${curso.nombre} agregado satisfactoriamente`);
-      this.router.navigate(['cursos/listar']);
-    });
-  }
+    if(this.formulario.status=='VALID'){
+        this.cursosService.agregarCurso(curso).subscribe((curso: Curso) => {
+          alert(`${curso.nombre} agregado satisfactoriamente`);
+          this.router.navigate(['cursos/listar']);
+        });
 
+    } else {
+      alert('Los campos maracados en rojo son obligatorios')
+    }}
 
 }

@@ -8,7 +8,7 @@ import { AlumnosRoutingModule } from './alumnosRouting';
 import { AlumnosService } from './services/alumnos.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { PipesDirectivesModule } from '../pipes-directives-module.module';
-import { HttpClient } from '@angular/common/http';
+// import { HttpClient } from '@angular/common/http';
 
 
 
@@ -26,7 +26,7 @@ import { HttpClient } from '@angular/common/http';
     AlumnosRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClient
+
   ],
   exports:[ListarAlumnosComponent,
     EditarAlumnoComponent,
