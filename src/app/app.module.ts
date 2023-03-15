@@ -1,11 +1,11 @@
-import { NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { ReactiveFormsModule ,FormsModule} from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
 import { FormularioReactivoComponent } from './core/components/formulario-reactivo/formulario-reactivo.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SidebarComponent } from './core/components/sidebar/sidebar.component'
-import {MaterialModule} from './material.module'
+import { MaterialModule } from './material.module'
 import { ButtonAddComponent } from './core/components/button-add/button-add.component';
 import { UsuarioService } from './core/services/usuario.service'
 import { AppRoutingModule } from './app-routing.module';
@@ -21,6 +21,8 @@ import { InicioComponent } from './core/components/inicio/inicio.component';
 import { HttpClientModule } from '@angular/common/http';
 import { CursosService } from './cursos/services/cursos.service';
 import { AuthRoutingModule } from './auth/auth.routing.module';
+import { AlumnosService } from './alumnos/services/alumnos.service';
+
 
 
 @NgModule({
@@ -31,7 +33,7 @@ import { AuthRoutingModule } from './auth/auth.routing.module';
     ButtonAddComponent,
     NotFoundComponent,
     ToolbarComponent,
-    InicioComponent
+    InicioComponent,
   ],
   imports: [
     BrowserModule,
@@ -41,15 +43,17 @@ import { AuthRoutingModule } from './auth/auth.routing.module';
     MaterialModule,
     AppRoutingModule,
     AlumnosModule,
+    CursosModule,
     CursosRoutingModule,
     AlumnosRoutingModule,
     AuthRoutingModule,
-    PipesDirectivesModule,
     NotfoundRoutingModule,
-    HttpClientModule
+    PipesDirectivesModule,
+    HttpClientModule,
 
   ],
-  providers:[UsuarioService,CursosService],
-  bootstrap: [AppComponent]
+  providers:[UsuarioService,CursosService,AlumnosService],
+  bootstrap: [AppComponent],
+  
 })
 export class AppModule { }

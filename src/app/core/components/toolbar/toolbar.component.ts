@@ -7,7 +7,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./toolbar.component.css']
 })
 export class ToolbarComponent {
-
+  title = 'AngularBarbato';
   constructor(
     private router: Router
   ){

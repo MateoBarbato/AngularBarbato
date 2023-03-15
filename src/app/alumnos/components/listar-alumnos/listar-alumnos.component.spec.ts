@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { AlumnosService } from '../../services/alumnos.service';
 
 import { ListarAlumnosComponent } from './listar-alumnos.component';
 
@@ -8,7 +9,8 @@ describe('ListarAlumnosComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ListarAlumnosComponent ]
+      declarations: [ ListarAlumnosComponent ],
+      providers:[AlumnosService]
     })
     .compileComponents();
 

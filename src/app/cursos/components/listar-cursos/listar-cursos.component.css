@@ -53,6 +53,10 @@ mat-card-actions{
     gap: 1rem;
 }
 
+matcard-header{
+    display: flow-root;
+}
+
 .card-imagen{
     width: 100%;
 }

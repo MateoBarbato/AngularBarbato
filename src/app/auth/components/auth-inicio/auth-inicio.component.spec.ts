@@ -1,3 +1,4 @@
+import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { AuthInicioComponent } from './auth-inicio.component';
@@ -8,7 +9,8 @@ describe('AuthInicioComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ AuthInicioComponent ]
+      declarations: [ AuthInicioComponent ],
+      schemas: [NO_ERRORS_SCHEMA]
     })
     .compileComponents();
 

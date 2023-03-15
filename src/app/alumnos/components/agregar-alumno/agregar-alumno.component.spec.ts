@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { AlumnosService } from '../../services/alumnos.service';
 
 import { AgregarAlumnoComponent } from './agregar-alumno.component';
 
@@ -8,7 +9,8 @@ describe('AgregarAlumnoComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ AgregarAlumnoComponent ]
+      declarations: [ AgregarAlumnoComponent ],
+      providers:[AlumnosService]
     })
     .compileComponents();
 

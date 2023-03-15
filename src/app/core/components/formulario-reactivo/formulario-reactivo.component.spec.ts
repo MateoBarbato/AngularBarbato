@@ -1,3 +1,4 @@
+import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { FormularioReactivoComponent } from './formulario-reactivo.component';
@@ -8,7 +9,8 @@ describe('FormularioReactivoComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ FormularioReactivoComponent ]
+      declarations: [ FormularioReactivoComponent ],
+      schemas: [NO_ERRORS_SCHEMA]
     })
     .compileComponents();
 

@@ -15,7 +15,7 @@ import { AlumnosService } from '../../services/alumnos.service';
   styleUrls: ['./listar-alumnos.component.css']
 })
 export class ListarAlumnosComponent implements AfterViewInit,OnDestroy {
-  columnas : string[] = ['id','nombre', 'inscripcionAbierta', 'edad', 'sexo', 'validado', 'acciones' ]
+  columnas : string[] = ['id','nombre', 'edad', 'sexo', 'validado', 'acciones' ]
   dataSource!: MatTableDataSource<Alumno>;
   suscripcion!: Subscription;
   alumnos$!: Observable<Alumno[]>;
@@ -37,7 +37,8 @@ export class ListarAlumnosComponent implements AfterViewInit,OnDestroy {
 
   editarAlumno(id:number){
     console.log(id)
-    this.router.navigate(['alumnos/editar/' , this.alumnos[id+1]])
+    console.log(this.alumnos[id])
+    this.router.navigate(['alumnos/editar/' , this.alumnos[id]])
   }
 
   eliminarAlumno(id:number){

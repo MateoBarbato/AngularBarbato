@@ -4,10 +4,11 @@ import { EditarAlumnoComponent } from './components/editar-alumno/editar-alumno.
 import { AgregarAlumnoComponent } from './components/agregar-alumno/agregar-alumno.component';
 import { ListarAlumnosComponent } from './components/listar-alumnos/listar-alumnos.component';
 import { MaterialModule } from '../material.module';
-import { PipesDirectivesModule } from '../pipes-directives-module.module';
 import { AlumnosRoutingModule } from './alumnosRouting';
 import { AlumnosService } from './services/alumnos.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { PipesDirectivesModule } from '../pipes-directives-module.module';
+import { HttpClient } from '@angular/common/http';
 
 
 
@@ -24,12 +25,13 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     PipesDirectivesModule,
     AlumnosRoutingModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClient
   ],
   exports:[ListarAlumnosComponent,
     EditarAlumnoComponent,
     AgregarAlumnoComponent,
-    ReactiveFormsModule
+    ReactiveFormsModule,
   ],
     providers:[AlumnosService]
 })

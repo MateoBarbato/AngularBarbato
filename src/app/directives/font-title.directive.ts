@@ -1,19 +1,19 @@
 import { Directive, ElementRef, Input, Renderer2 } from '@angular/core';
 
 @Directive({
-  selector: '[appTitleFont]'
+  selector: '[appFontTitle]'
 })
-export class TitleFontDirective {
+export class FontTitleDirective {
 
-  @Input('appTitleFont') value!: number;
+  @Input('appFontTitle') value!: any;
 
   constructor(
     private renderer: Renderer2,
     private element : ElementRef,
-    ) { }
+  ) { }
 
-    ngOnInit() : void {
+    ngOnInit(): void{
       this.renderer.setStyle(this.element.nativeElement, 'font-size', this.value+'px')
-    
     }
+
 }
