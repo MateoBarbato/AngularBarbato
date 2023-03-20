@@ -8,6 +8,10 @@ import { AlumnosRoutingModule } from './alumnosRouting';
 import { AlumnosService } from './services/alumnos.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { PipesDirectivesModule } from '../pipes-directives-module.module';
+import { EffectsModule } from '@ngrx/effects';
+import { AlumnosStateEffects } from './alumnos-state.effects';
+import { StoreModule } from '@ngrx/store';
+import { alumnosStateFeatureKey, reducer } from './alumnos-state.reducer';
 // import { HttpClient } from '@angular/common/http';
 
 
@@ -26,6 +30,8 @@ import { PipesDirectivesModule } from '../pipes-directives-module.module';
     AlumnosRoutingModule,
     FormsModule,
     ReactiveFormsModule,
+    StoreModule.forFeature(alumnosStateFeatureKey,reducer)
+    // EffectsModule.forFeature([AlumnosStateEffects]),
 
   ],
   exports:[ListarAlumnosComponent,

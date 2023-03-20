@@ -28,7 +28,6 @@ import { FontTitleDirective } from './directives/font-title.directive';
     FiltroPipe,
     NombreApellidoPipe,
     FontTitleDirective
-    // PipesDirectivesModule
   ]
 })
 export class PipesDirectivesModule {}

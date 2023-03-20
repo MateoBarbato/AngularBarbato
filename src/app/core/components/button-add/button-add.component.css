@@ -6,3 +6,8 @@
     align-items: center;
     gap: 1rem;
 }
+
+.button{
+  width: 100% !important;
+  background-color: #212121b8;
+}

@@ -1,7 +1,13 @@
-<div class="background">
-    
-    
-    <div>
+<ng-container class="container" *ngIf="(cargando$ | async)">
+  <div class="row">
+    <div class="col d-flex justify-content-center">
+      <mat-spinner></mat-spinner>
+    </div>
+  </div>
+</ng-container>
+
+<div class="background" >
+    <ng-container *ngIf="!(cargando$ | async)">
         <div class="container filtro">
             <div class="filtro">
                 <div class="row filtro-row">
@@ -17,8 +23,9 @@
         <div class="container container-background">
             <div class="row card-table">
                 <mat-card-title class="title">Cards Cursos</mat-card-title>
-                <div class="col" *ngFor="let curso of cursos$ | async">
-                    <mat-card class="card">
+                <div class="col" *ngIf="cursos$ | async as cursosArr">
+                  <div class="col card-container" >
+                    <mat-card class="card" *ngFor="let curso of cursosArr |filtro:filtro">
                         <mat-card-header>
                             <mat-card-title>{{ curso.nombre }}</mat-card-title>
                             <mat-card-subtitle>{{ curso.comision }}</mat-card-subtitle>
@@ -38,15 +45,17 @@
                         </mat-card-actions>
                     </mat-card>
                 </div>
+              </div>
+                </div>
             </div>
-        </div>
-    </div>
-    
-    <!-- <div class="container-table">
 
-        <div class="table-background">
+    </ng-container>
+
+    <div  class="container-table">
+
+        <div *ngIf="cursos$ | async" class="table-background">
             <mat-card-title class="title">Tabla Cursos</mat-card-title>
-            <table mat-table [dataSource]="dataSource">
+            <table mat-table  [dataSource]="dataSource">
                 <ng-container matColumnDef="nombre">
                     <th mat-header-cell *matHeaderCellDef="">Nombre</th>
                     <td mat-cell *matCellDef="let element">{{element.nombre}}</td>
@@ -59,12 +68,12 @@
                     <th mat-header-cell *matHeaderCellDef="">Profesor</th>
                     <td mat-cell *matCellDef="let element" >{{element.profesor.nombre}}</td>
                 </ng-container>
-            
+
                 <ng-container matColumnDef="inscripcionAbierta">
                     <th mat-header-cell *matHeaderCellDef="">Inscripciones abiertas</th>
                     <td mat-cell [appBooleanEstilo]="element.inscripcionAbierta" *matCellDef="let element">{{element.inscripcionAbierta | booleanToText:'Si' : 'No'}}</td>
                 </ng-container>
-            
+
                 <ng-container matColumnDef="fechaInicio">
                     <th mat-header-cell *matHeaderCellDef="">Fecha Inicio</th>
                     <td mat-cell  *matCellDef="let element">{{element.fechaInicio | formatoFecha}}</td>
@@ -74,7 +83,7 @@
                     <th mat-header-cell *matHeaderCellDef="">Fecha Fin</th>
                     <td mat-cell  *matCellDef="let element">{{element.fechaFin | formatoFecha}}</td>
                 </ng-container>
-        
+
                 <ng-container matColumnDef="acciones">
                     <th mat-header-cell *matHeaderCellDef="">Acciones</th>
                     <td mat-cell  *matCellDef="let element">
@@ -84,20 +93,20 @@
                         <button disabled="true" mat-icon-button >
                             <mat-icon color="accent">delete</mat-icon>
                         </button>
-                        
+
                     </td>
                 </ng-container>
-            
-            
+
+
                 <tr mat-footer-row *matHeaderRowDef="columnas"></tr>
                 <tr mat-row *matRowDef="let row; columns : columnas"></tr>
-            
+
             </table>
             <mat-paginator [pageSizeOptions]="[5, 10, 20]"
                         showFirstLastButtons
                         aria-label="Select page of periodic elements">
         </mat-paginator>
         </div>
-    </div> -->
+    </div>
 </div>
 

@@ -5,9 +5,10 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class FormatoFechaPipe implements PipeTransform {
 
-  transform(fecha:Date): string {
+  transform(fecha:string): string {
     let resultado : string;
-    resultado = `${fecha.getDate()}/${fecha.getMonth()}/${fecha.getFullYear()}`
+    resultado = fecha.slice(0,10)
+    console.log('el resultado es ' , resultado)
     return resultado
   }
 
