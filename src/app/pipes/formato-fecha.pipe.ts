@@ -8,7 +8,6 @@ export class FormatoFechaPipe implements PipeTransform {
   transform(fecha:string): string {
     let resultado : string;
     resultado = fecha.slice(0,10)
-    console.log('el resultado es ' , resultado)
     return resultado
   }
 

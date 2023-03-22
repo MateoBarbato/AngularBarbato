@@ -1,9 +1,12 @@
 <div class="container">
-    <mat-card>
+    <mat-card class="card">
         <mat-card-title class="title">Bienvenido!</mat-card-title>
         <mat-card-subtitle class="subtitle">Como usar:</mat-card-subtitle>
         <mat-card-content>
             <p class="text">Para navegar en la pagina web se puede utilizar los links en la barra de navegacion para un acceso rapido y sencillo.</p>
+            <p class="text">Estos links poseen Guards que restringen la navegacion si uno no esta logueado.</p>
+            <p class="text">Para poder acceder a cursos y alumnos se puede utilizar este usuario:</p>
+            <h3 class="text-em"><em >usuario: user  || contraseña: user</em></h3>
             <p class="text">Si se quiere acceder a traves de la url tambien se puede , siendo las rutas estas: </p>
             <ul>
                 <li>
@@ -13,8 +16,11 @@
                     <b>/alumnos</b> Te dirige directamente al listado de cursos
                 </li>
             </ul>
-            <p class="text">En la parte superior aparece un boton, el cual acciona el slide de la navegacion lateral.</p>
+            <p class="text">En la parte superior izquierda de esta card aparece un boton, el cual acciona el slide de la navegacion lateral.</p>
             <p class="text">Ahi se pueden encontrar acciones para agregar nuevos usarios a la base de datos para testear las funcionalidades</p>
+            <p class="text">Durante el periodo de prueba de la pagina estara habilitado el usuario siguiente:</p>
+            <h3 class="text-em"><em>usuario: admin  || contraseña: admin</em></h3>
+            <p class="text-warn">Tener en cuenta que para poder editar y agregar cursos o alumnos es necesario tener la autenticacion de <em class="text-em">admin</em></p>
         </mat-card-content>
       </mat-card>
 </div>

@@ -11,6 +11,8 @@ import { Store } from '@ngrx/store';
 import { selectorCargandoCursos, selectorCursosCargados } from '../../curso-state.selectors';
 import { cargarCursoState, cursosCargados } from '../../curso-state.actions';
 import { CursoState } from '../../curso-state.reducer';
+import { AuthState } from 'src/app/auth/state/auth.reducer';
+import { selectSesionAll } from 'src/app/auth/state/auth.selectors';
 
 @Component({
   selector: 'app-listar-cursos',
@@ -30,7 +32,7 @@ export class ListarCursosComponent implements OnInit,AfterViewInit, OnDestroy {
   constructor(
     private cursosService : CursosService,
     private router: Router,
-    private sesion: SesionService,
+    private storeAuth: Store<AuthState>,
     private store: Store<CursoState>,
   ){
   }
@@ -38,11 +40,11 @@ export class ListarCursosComponent implements OnInit,AfterViewInit, OnDestroy {
     @ViewChild(MatPaginator) paginator!: MatPaginator;
 
   ngOnInit(): void {
-    this.sesion.obtenerSesion().subscribe((sesion:Sesion)=>{
+    this.storeAuth.select(selectSesionAll).subscribe((sesion:Sesion)=>{
         console.log('Estado de la sesion', sesion)
-        // if(!sesion.sesionActiva){
-        //   this.router.navigate(['auth/login'])
-        // }
+        if(!sesion.sesionActiva){
+          this.router.navigate(['auth/login'])
+        }
       })
     this.dataSource = new MatTableDataSource<Curso>();
     this.cargando$ = this.store.select(selectorCargandoCursos)

@@ -1,3 +1,7 @@
+.card{
+  padding: 20px;
+}
+
 .title{
     color: white;
     font-family:'Roboto';
@@ -11,12 +15,26 @@
     color: white;
     font-family:'Roboto';
     font-weight: 500;
-    padding-left: 10px;
+    padding-left: 15px;
+}
+
+.text-em{
+  text-decoration: underline 1px rgba(255, 255, 255, 0.476);
+  text-align: center;
+  font-size: 18px;
 }
 
 .text{
     font-size: 16px;
     color: white;
+    font-family:'Roboto';
+    font-weight: 400;
+    padding-left: 10px;
+}
+
+.text-warn{
+    font-size: 16px;
+    color: #68f0aed3;
     font-family:'Roboto';
     font-weight: 400;
     padding-left: 10px;

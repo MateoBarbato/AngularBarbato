@@ -1,6 +1,9 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTree } from '@angular/router';
+import { Store } from '@ngrx/store';
 import { map, Observable } from 'rxjs';
+import { AuthState } from 'src/app/auth/state/auth.reducer';
+import { selectSesionActiva, selectSesionAll } from 'src/app/auth/state/auth.selectors';
 import { Sesion } from 'src/app/models/sesion';
 import { SesionService } from '../services/sesion.service';
 
@@ -10,7 +13,7 @@ import { SesionService } from '../services/sesion.service';
 export class AdminGuard implements CanActivate {
 
   constructor(
-    private sesion: SesionService,
+    private authStore:Store<AuthState>,
     private router : Router
   ){
 
@@ -19,7 +22,7 @@ export class AdminGuard implements CanActivate {
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-      return this.sesion.obtenerSesion().pipe(map((sesion:Sesion)=>{
+      return this.authStore.select(selectSesionAll).pipe(map((sesion:Sesion)=>{
           if(sesion.usuarioActivo?.esAdmin){
             return true
           }else{
@@ -30,5 +33,5 @@ export class AdminGuard implements CanActivate {
         })
       )
   }
-  
+
 }

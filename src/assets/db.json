@@ -1,0 +1,6 @@
+{
+  "usuarios":[
+    {"usuario":"admin","contrasena":"admin","esAdmin":true},
+    {"usuario":"user","contrasena":"user","esAdmin":false}
+  ]
+}

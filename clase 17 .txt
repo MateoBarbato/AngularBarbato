@@ -1,2 +1,7 @@
-me quede en el minuto 47 aprox
-falta ver el resto.
+Terminar login bien,
+
+Arreglar tabla alumnos no deja borrar ni editar?
+agregar logout en el toolbar
+
+crear funcion logout que pase una nueva sesion al dispatch con el sesionActiva false y el usuarioActivo no lo pase ya que no es obligatorio.
+Deberia resetear la sesion al valor inicial

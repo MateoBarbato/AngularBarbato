@@ -4,6 +4,8 @@ import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { filter, map, Observable, Subscription } from 'rxjs';
+import { AuthState } from 'src/app/auth/state/auth.reducer';
+import { selectSesionAll } from 'src/app/auth/state/auth.selectors';
 import { SesionService } from 'src/app/core/services/sesion.service';
 import { cargarCursoState } from 'src/app/cursos/curso-state.actions';
 import { Alumno } from 'src/app/models/alumno';
@@ -34,7 +36,7 @@ export class ListarAlumnosComponent implements AfterViewInit,OnDestroy {
   constructor(
     private router:Router,
     private alumnosService: AlumnosService,
-    private sesion:SesionService,
+    private authStore:Store<AuthState>,
     private store:Store<AlumnoState>
   ){
   }
@@ -45,11 +47,11 @@ export class ListarAlumnosComponent implements AfterViewInit,OnDestroy {
 
 
   ngOnInit(): void {
-    this.sesion.obtenerSesion().subscribe((sesion:Sesion)=>{
+    this.store.select(selectSesionAll).subscribe((sesion:Sesion)=>{
       console.log('Estado de la sesion', sesion)
-      // if(!sesion.sesionActiva){
-      //   this.router.navigate(['auth/login'])
-      // }
+      if(!sesion.sesionActiva){
+        this.router.navigate(['auth/login'])
+      }
     })
     this.dataSource = new MatTableDataSource<Alumno>();
     this.cargando$ = this.store.select(selectorCargandoAlumnos);
