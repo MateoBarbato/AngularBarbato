@@ -1,5 +1,5 @@
 import { createFeature, createReducer, on } from '@ngrx/store';
-import { Curso } from '../models/curso';
+import { Curso } from '../../models/curso';
 import * as CursoStateActions from './curso-state.actions';
 
 export const cursoStateFeatureKey = 'cursoState';
@@ -21,7 +21,16 @@ export const reducer = createReducer(
   }),
   on(CursoStateActions.cursosCargados, (state,{cursos})=>{
     return{...state,cargando:false,cursos:cursos}
-  })
+  }),
+  on(CursoStateActions.agregarCursoState, (state, { curso: Curso }) => {
+    return state;
+  }),
+  on(CursoStateActions.editarCurso, (state)=>{
+    return state
+  }),
+  on(CursoStateActions.eliminarCurso, (state)=>{
+    return state
+  }),
 );
 
 export const cursoStateFeature = createFeature({

@@ -1,9 +1,11 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-
+import { Store } from '@ngrx/store';
 import { Curso } from 'src/app/models/curso';
 import { CursosService } from '../../services/cursos.service';
+import { agregarCursoState } from '../../state/curso-state.actions';
+import { CursoState } from '../../state/curso-state.reducer';
 
 @Component({
   selector: 'app-agregar-curso',
@@ -17,10 +19,11 @@ export class AgregarCursoComponent implements OnInit{
   constructor(
     private cursosService : CursosService,
     private activatedRoute:ActivatedRoute,
-    private router:Router
+    private router:Router,
+    private store: Store<CursoState>
   ){}
 
- 
+
   ngOnInit(): void {
     this.activatedRoute.paramMap.subscribe((parametros)=>{
       this.formulario = new FormGroup({
@@ -46,15 +49,12 @@ export class AgregarCursoComponent implements OnInit{
         correo:'abner@gmail.com',
         fechaRegistro: new Date()
       }}
-
+      console.log(curso)
     if(this.formulario.status=='VALID'){
-        this.cursosService.agregarCurso(curso).subscribe((curso: Curso) => {
-          alert(`${curso.nombre} agregado satisfactoriamente`);
-          this.router.navigate(['cursos/listar']);
-        });
-
+        this.store.dispatch(agregarCursoState({curso:curso}))
     } else {
       alert('Los campos maracados en rojo son obligatorios')
     }}
 
 }
+

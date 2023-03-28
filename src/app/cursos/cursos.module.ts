@@ -9,10 +9,9 @@ import { AgregarCursoComponent } from './components/agregar-curso/agregar-curso.
 import { CursosService } from './services/cursos.service';
 import { PipesDirectivesModule } from '../pipes-directives-module.module';
 import { StoreModule } from '@ngrx/store';
-import { CursoStateEffects } from './curso-state.effects';
-import { cursoStateFeatureKey, reducer } from './curso-state.reducer';
-// import { EffectsModule } from '@ngrx/effects';
-// import { CursoStateEffects } from './curso-state.effects';
+import { CursoStateEffects } from './state/curso-state.effects';
+import { cursoStateFeatureKey, reducer } from './state/curso-state.reducer';
+import { EffectsModule } from '@ngrx/effects';
 
 
 
@@ -29,8 +28,8 @@ import { cursoStateFeatureKey, reducer } from './curso-state.reducer';
     FormsModule,
     ReactiveFormsModule,
     PipesDirectivesModule,
-    StoreModule.forFeature(cursoStateFeatureKey,reducer)
-    // EffectsModule.forFeature([CursoStateEffects])
+    StoreModule.forFeature(cursoStateFeatureKey,reducer),
+    EffectsModule.forFeature([CursoStateEffects])
   ],
   exports:[
     ListarCursosComponent,

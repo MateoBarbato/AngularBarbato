@@ -31,4 +31,8 @@ export class LoginService {
         }
       }))
   }
+
+  // logout(sesion: Sesion){
+  //   return sesion
+  // }
 }

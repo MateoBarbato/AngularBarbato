@@ -3,7 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { NotFoundComponent } from './core/components/not-found/not-found.component';
 
 const routes: Routes = [
-  { path: 'notfound',   component:NotFoundComponent },
+  { path: 'notfound',   component:NotFoundComponent , title:'My App - Not Found'},
   { path: '**', redirectTo:'/notfound' ,  }
 
 ];

@@ -11,7 +11,7 @@ const routes: Routes = [
     {path:'editar', component:EditarAlumnoComponent,canActivate:[AdminGuard]},
     {path:'agregar', component:AgregarAlumnoComponent,canActivate:[AdminGuard]},
     {path:'', redirectTo:'listar',pathMatch:'full'},
-  ]}
+  ],title:'My App - Alumnos'}
 ];
 
 @NgModule({

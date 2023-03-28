@@ -8,9 +8,9 @@ import { Router } from '@angular/router';
 import { SesionService } from 'src/app/core/services/sesion.service';
 import { Sesion } from 'src/app/models/sesion';
 import { Store } from '@ngrx/store';
-import { selectorCargandoCursos, selectorCursosCargados } from '../../curso-state.selectors';
-import { cargarCursoState, cursosCargados } from '../../curso-state.actions';
-import { CursoState } from '../../curso-state.reducer';
+import { selectorCargandoCursos, selectorCursosCargados } from '../../state/curso-state.selectors';
+import { cargarCursoState, cursosCargados } from '../../state/curso-state.actions';
+import { CursoState } from '../../state/curso-state.reducer';
 import { AuthState } from 'src/app/auth/state/auth.reducer';
 import { selectSesionAll } from 'src/app/auth/state/auth.selectors';
 
@@ -50,9 +50,7 @@ export class ListarCursosComponent implements OnInit,AfterViewInit, OnDestroy {
     this.cargando$ = this.store.select(selectorCargandoCursos)
 
     this.store.dispatch(cargarCursoState());
-    this.cursosService.obtenerCursosObservable().subscribe((cursos:Curso[])=>{
-      this.store.dispatch(cursosCargados({cursos:cursos}))
-    })
+
     this.cursos$  = this.store.select(selectorCursosCargados);
     this.subscription = this.cursos$.subscribe((cursos)=>{
         this.dataSource.data = cursos

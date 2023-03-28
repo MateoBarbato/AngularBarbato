@@ -3,8 +3,9 @@ import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { AuthState } from 'src/app/auth/state/auth.reducer';
-import { selectAuthState, selectSesionActiva, selectSesionAll } from 'src/app/auth/state/auth.selectors';
+import { selectAuthState, selectSesionActiva, selectSesionAll, selectUsuarioActivo } from 'src/app/auth/state/auth.selectors';
 import { Sesion } from 'src/app/models/sesion';
+import { Usuario } from 'src/app/models/usuario';
 
 @Component({
   selector: 'app-toolbar',
@@ -13,17 +14,19 @@ import { Sesion } from 'src/app/models/sesion';
 })
 export class ToolbarComponent implements OnInit {
   title = 'AngularBarbato';
-  sesion$!:Observable<Boolean>
+  sesionActiva$!:Observable<Boolean>
+  usuarioActivo$!:Observable<Usuario | undefined>
   constructor(
     private router: Router,
     private authStore: Store<AuthState>
   ){}
 
   ngOnInit(): void {
-    this.sesion$ = this.authStore.select(selectSesionActiva)
-    if(this.sesion$){
-      this.sesion$.subscribe(console.log)
-    }
+    this.sesionActiva$ = this.authStore.select(selectSesionActiva)
+    this.usuarioActivo$ = this.authStore.select(selectUsuarioActivo)
+    this.sesionActiva$.subscribe((data)=>{
+      console.log(data)
+    })
   }
 
   logOut(){

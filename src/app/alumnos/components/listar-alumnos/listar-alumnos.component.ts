@@ -7,13 +7,13 @@ import { filter, map, Observable, Subscription } from 'rxjs';
 import { AuthState } from 'src/app/auth/state/auth.reducer';
 import { selectSesionAll } from 'src/app/auth/state/auth.selectors';
 import { SesionService } from 'src/app/core/services/sesion.service';
-import { cargarCursoState } from 'src/app/cursos/curso-state.actions';
+import { cargarCursoState } from 'src/app/cursos/state/curso-state.actions';
 import { Alumno } from 'src/app/models/alumno';
 import { Curso } from 'src/app/models/curso';
 import { Sesion } from 'src/app/models/sesion';
-import { alumnosCargados, cargarAlumnoState } from '../../alumnos-state.actions';
-import { AlumnoState } from '../../alumnos-state.reducer';
-import { selectorAlumnosCargados, selectorCargandoAlumnos } from '../../alumnos-state.selectors';
+import { alumnosCargados, cargarAlumnoState } from '../../state/alumnos-state.actions';
+import { AlumnoState } from '../../state/alumnos-state.reducer';
+import { selectorAlumnosCargados, selectorCargandoAlumnos } from '../../state/alumnos-state.selectors';
 import { AlumnosService } from '../../services/alumnos.service';
 
 
@@ -80,9 +80,9 @@ export class ListarAlumnosComponent implements AfterViewInit,OnDestroy {
   editarAlumno(id:number){
     let alumnoeditado= this.alumnos[id]
    this.router.navigate(['alumnos/editar/' , alumnoeditado])
- }
+  }
 
- eliminarAlumno(id:number){
+  eliminarAlumno(id:number){
    let alumnoToEliminate = this.alumnos[id]
    this.subscriptionEliminate = this.alumnosService.eliminarAlumno(alumnoToEliminate).subscribe((alumno:Alumno)=>{
      alert(`${alumno.nombre} eliminado , ${alumno.id}`)
@@ -91,7 +91,7 @@ export class ListarAlumnosComponent implements AfterViewInit,OnDestroy {
        this.dataSource.data = alumnos
        this.alumnos = alumnos
      });
- })
+   })
    // reseteo el paginador y vuelvo a actualizar el observable de alumnos$.
    // Recargo la pagina.
    this.dataSource.paginator = this.paginator;

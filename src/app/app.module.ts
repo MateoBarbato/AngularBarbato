@@ -25,6 +25,8 @@ import { AlumnosService } from './alumnos/services/alumnos.service';
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { EffectsModule } from '@ngrx/effects';
+import { LoginService } from './auth/services/login.service';
+import { AuthModule } from './auth/auth.module';
 
 
 
@@ -47,6 +49,7 @@ import { EffectsModule } from '@ngrx/effects';
     AppRoutingModule,
     AlumnosModule,
     CursosModule,
+    AuthModule,
     CursosRoutingModule,
     AlumnosRoutingModule,
     AuthRoutingModule,
@@ -58,7 +61,7 @@ import { EffectsModule } from '@ngrx/effects';
     EffectsModule.forRoot([]),
 
   ],
-  providers:[UsuarioService,CursosService,AlumnosService],
+  providers:[UsuarioService,CursosService,AlumnosService,LoginService],
   bootstrap: [AppComponent],
 
 })

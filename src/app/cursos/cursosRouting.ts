@@ -13,7 +13,7 @@ const routes: Routes = [
     {path:'editar', component:EditarCursoComponent,canActivate:[AdminGuard]},
     {path:'agregar', component:AgregarCursoComponent,canActivate:[AdminGuard]},
     { path: '', redirectTo:'listar', pathMatch:'full'}
-  ]}
+  ], title:'My App - Cursos'}
 ];
 
 @NgModule({

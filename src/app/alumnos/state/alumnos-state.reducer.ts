@@ -1,6 +1,6 @@
 import { state } from '@angular/animations';
 import { createFeature, createReducer, on } from '@ngrx/store';
-import { Alumno } from '../models/alumno';
+import { Alumno } from '../../models/alumno';
 import * as AlumnosStateActions from './alumnos-state.actions';
 
 export const alumnosStateFeatureKey = 'alumnosState';

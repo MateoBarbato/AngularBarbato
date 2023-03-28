@@ -5,3 +5,6 @@ agregar logout en el toolbar
 
 crear funcion logout que pase una nueva sesion al dispatch con el sesionActiva false y el usuarioActivo no lo pase ya que no es obligatorio.
 Deberia resetear la sesion al valor inicial
+
+
+1:32:00

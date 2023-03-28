@@ -9,9 +9,10 @@ import { AlumnosService } from './services/alumnos.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { PipesDirectivesModule } from '../pipes-directives-module.module';
 import { EffectsModule } from '@ngrx/effects';
-import { AlumnosStateEffects } from './alumnos-state.effects';
+import { AlumnosStateEffects } from './state/alumnos-state.effects';
 import { StoreModule } from '@ngrx/store';
-import { alumnosStateFeatureKey, reducer } from './alumnos-state.reducer';
+import { alumnosStateFeatureKey, reducer } from './state/alumnos-state.reducer';
+import { DetalleComponent } from './components/detalle/detalle.component';
 // import { HttpClient } from '@angular/common/http';
 
 
@@ -21,7 +22,8 @@ import { alumnosStateFeatureKey, reducer } from './alumnos-state.reducer';
   declarations: [
     ListarAlumnosComponent,
     AgregarAlumnoComponent,
-    EditarAlumnoComponent
+    EditarAlumnoComponent,
+    DetalleComponent
   ],
   imports: [
     CommonModule,

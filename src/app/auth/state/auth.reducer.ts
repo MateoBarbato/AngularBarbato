@@ -11,6 +11,7 @@ export interface AuthState {
 export const initialState: AuthState = {
   sesion:{
     sesionActiva:false,
+    usuarioActivo:undefined
   }
 };
 
