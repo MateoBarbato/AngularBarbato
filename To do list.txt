@@ -1,8 +1,6 @@
 
 boton de editaralumnos el toggle tiene de valor default true, deberia tener lo que pase por params
 
-Detalle alumnos y cursos remover la capacidad de tocar los inputs.
+Detalle alumnos/cursos remover la capacidad de tocar los inputs.
 
-habilitar los botone sdel table de cursos para que pase el id por params con el paginator
-
-1:32:00
+Pensar en si pasar el detalle por comision a otro componente.
