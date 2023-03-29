@@ -1,17 +1,22 @@
 
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import {catchError, Observable, Subscriber, throwError } from 'rxjs';import { env } from 'src/enviroment/enviroment';
+import {catchError, Observable, Subscriber, throwError } from 'rxjs';import { Profesor } from 'src/app/models/profesor';
+import { env } from 'src/enviroment/enviroment';
 import { Curso } from '../../models/curso';
 
 @Injectable()
 export class CursosService {
   constructor
-  (private http:HttpClient) 
+  (private http:HttpClient)
   {}
 
   obtenerCursosObservable(): Observable<Curso[]>{
    return this.http.get<Curso[]>(`${env.apiURL}/cursos`)
+  }
+
+  obtenerProfesoresObservable() : Observable<Profesor[]>{
+    return this.http.get<Profesor[]>(`${env.api2URL}/profesores`)
   }
 
   agregarCurso(curso:Curso): Observable<Curso>{

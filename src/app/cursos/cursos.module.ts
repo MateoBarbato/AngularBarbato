@@ -12,6 +12,8 @@ import { StoreModule } from '@ngrx/store';
 import { CursoStateEffects } from './state/curso-state.effects';
 import { cursoStateFeatureKey, reducer } from './state/curso-state.reducer';
 import { EffectsModule } from '@ngrx/effects';
+import { ProfesoresService } from '../profesores/profesores.service';
+import { DetalleComponent } from './components/detalle/detalle.component';
 
 
 
@@ -20,6 +22,7 @@ import { EffectsModule } from '@ngrx/effects';
     ListarCursosComponent,
     EditarCursoComponent,
     AgregarCursoComponent,
+    DetalleComponent,
   ],
   imports:[
     CommonModule,
@@ -36,6 +39,6 @@ import { EffectsModule } from '@ngrx/effects';
     EditarCursoComponent,
     AgregarCursoComponent,
   ],
-    providers:[CursosService]
+    providers:[CursosService,ProfesoresService]
 })
 export class CursosModule { }

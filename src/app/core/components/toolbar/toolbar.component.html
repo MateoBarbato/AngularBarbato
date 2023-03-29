@@ -4,9 +4,10 @@
     <button mat-button [routerLink]="['/inicio']" routerLinkActive="router-link-active" >Inicio</button>
     <a mat-button [routerLink]="['/cursos']" routerLinkActive="router-link-active">Cursos </a>
     <a mat-button [routerLink]="['/alumnos']" routerLinkActive="router-link-active" >Alumnos </a>
-    <a mat-button *ngIf=" !(sesionActiva$ | async)" [routerLink]="['/auth']" routerLinkActive="router-link-active" >Login </a>
-    <button mat-button *ngIf="sesionActiva$ | async" (click)="logOut()" routerLinkActive="router-link-active" >Login </button>
+    <div *ngIf="(sesionActiva$ | async) === false">
+      <a mat-button  [routerLink]="['/auth']" routerLinkActive="router-link-active" >Login </a>
+    </div>
+    <div  *ngIf="(sesionActiva$| async) === true" >
+      <button mat-button (click)="logOut()" routerLinkActive="router-link-active" >Log Out </button>
+    </div>
   </mat-toolbar>
-
-
-  <!-- *ngIf="sesionActiva$ | async" -->

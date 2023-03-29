@@ -110,3 +110,12 @@ matcard-header{
     width: 100%;
     margin: auto;
 }
+
+
+.button-more{
+  width: 85%;
+}
+
+.booleanText{
+  height: 40px;
+}

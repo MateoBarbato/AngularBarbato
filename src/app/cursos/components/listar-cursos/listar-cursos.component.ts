@@ -9,10 +9,11 @@ import { SesionService } from 'src/app/core/services/sesion.service';
 import { Sesion } from 'src/app/models/sesion';
 import { Store } from '@ngrx/store';
 import { selectorCargandoCursos, selectorCursosCargados } from '../../state/curso-state.selectors';
-import { cargarCursoState, cursosCargados } from '../../state/curso-state.actions';
+import { cargarCursoState, cursosCargados, eliminarCurso } from '../../state/curso-state.actions';
 import { CursoState } from '../../state/curso-state.reducer';
 import { AuthState } from 'src/app/auth/state/auth.reducer';
-import { selectSesionAll } from 'src/app/auth/state/auth.selectors';
+import { selectSesionAll, selectUsuarioAdmin } from 'src/app/auth/state/auth.selectors';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-listar-cursos',
@@ -23,34 +24,37 @@ export class ListarCursosComponent implements OnInit,AfterViewInit, OnDestroy {
   filtro!:string
   columnas : string[] = ['nombre', 'comision' , 'profesor', 'inscripcionAbierta', 'fechaInicio', 'fechaFin','acciones' ]
   dataSource!: MatTableDataSource<Curso>
-  cursos!:Curso[];
   cursos$!:Observable<Curso[]>;
   subscription!:Subscription;
-  subscriptionEliminate!:Subscription;
+  subscriptionAdmin!:Subscription;
   cargando$!:Observable<Boolean>;
+  usuarioAdmin$!:Observable<boolean|undefined>
 
   constructor(
     private cursosService : CursosService,
     private router: Router,
     private storeAuth: Store<AuthState>,
     private store: Store<CursoState>,
+    private snackBar : MatSnackBar
   ){
   }
 
     @ViewChild(MatPaginator) paginator!: MatPaginator;
 
   ngOnInit(): void {
+    this.dataSource = new MatTableDataSource<Curso>();
     this.storeAuth.select(selectSesionAll).subscribe((sesion:Sesion)=>{
-        console.log('Estado de la sesion', sesion)
         if(!sesion.sesionActiva){
           this.router.navigate(['auth/login'])
         }
       })
-    this.dataSource = new MatTableDataSource<Curso>();
+    // ADMIN REQUEST VALUE
+    this.usuarioAdmin$= this.storeAuth.select(selectUsuarioAdmin);
+    this.subscriptionAdmin = this.usuarioAdmin$.subscribe()
+
+
     this.cargando$ = this.store.select(selectorCargandoCursos)
-
     this.store.dispatch(cargarCursoState());
-
     this.cursos$  = this.store.select(selectorCursosCargados);
     this.subscription = this.cursos$.subscribe((cursos)=>{
         this.dataSource.data = cursos
@@ -59,10 +63,7 @@ export class ListarCursosComponent implements OnInit,AfterViewInit, OnDestroy {
   }
 
   eliminarCurso(curso: Curso) {
-      this.subscriptionEliminate = this.cursosService.eliminarCurso(curso).subscribe((curso:Curso)=>{
-          alert(`${curso.nombre} eliminado`)
-          this.cursos$ = this.cursosService.obtenerCursosObservable();
-      })
+      this.store.dispatch(eliminarCurso({curso:curso}))
 
   }
 
@@ -70,7 +71,9 @@ export class ListarCursosComponent implements OnInit,AfterViewInit, OnDestroy {
       this.router.navigate(['cursos/editar/' , curso])
   }
 
-
+  detalleCurso(curso:Curso){
+    this.router.navigate(['cursos/detalle/' , curso])
+  }
 
   ngAfterViewInit(): void {
     this.dataSource.paginator = this.paginator;
@@ -78,8 +81,8 @@ export class ListarCursosComponent implements OnInit,AfterViewInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.subscription.unsubscribe();
-    if(this.subscriptionEliminate){
-      this.subscriptionEliminate.unsubscribe();
+    if(this.subscriptionAdmin){
+      this.subscriptionAdmin.unsubscribe();
     }
   }
 

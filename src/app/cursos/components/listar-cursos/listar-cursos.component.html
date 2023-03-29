@@ -33,9 +33,10 @@
                         <img class="card-imagen" mat-card-image src="https://parentesis.com/imagesPosts/coder00.jpg" alt="">
                         <mat-card-content>
                             <p>Impartido por {{ curso.profesor.nombre }}</p>
-                            <p [appBooleanEstilo]="curso.inscripcionAbierta">{{ curso.inscripcionAbierta | booleanToText:'Inscripciones abiertas':'Inscripciones cerradas' }}</p>
+                            <p class="booleanText" [appBooleanEstilo]="curso.inscripcionAbierta">{{ curso.inscripcionAbierta | booleanToText:'Inscripciones abiertas':'Inscripciones cerradas' }}</p>
                         </mat-card-content>
-                        <mat-card-actions align="end">
+                        <div *ngIf="(usuarioAdmin$ | async)">
+                          <mat-card-actions align="end">
                             <button  mat-raised-button color="primary" (click)="editarCurso(curso)" >
                                 Editar
                             </button>
@@ -43,6 +44,14 @@
                                 Eliminar
                             </button>
                         </mat-card-actions>
+                        </div>
+                        <div *ngIf="!(usuarioAdmin$ | async)">
+                          <mat-card-actions class="d-flex justify-content-center">
+                            <button class="button-more" mat-raised-button color="primary" (click)="detalleCurso(curso)" >
+                                Ver mas ...
+                            </button>
+                        </mat-card-actions>
+                        </div>
                     </mat-card>
                 </div>
               </div>
@@ -86,15 +95,24 @@
 
                 <ng-container matColumnDef="acciones">
                     <th mat-header-cell *matHeaderCellDef="">Acciones</th>
-                    <td mat-cell  *matCellDef="let element">
-                        <button disabled="true" mat-icon-button >
+                    <div *ngIf="(usuarioAdmin$ | async)">
+                      <td mat-cell  *matCellDef="let element">
+                        <button (click)="editarCurso(element)" mat-icon-button >
                             <mat-icon color="warn">edit</mat-icon>
                         </button>
-                        <button disabled="true" mat-icon-button >
+                        <button (click)="eliminarCurso(element)" mat-icon-button >
                             <mat-icon color="accent">delete</mat-icon>
                         </button>
 
                     </td>
+                    </div>
+                    <div *ngIf="!(usuarioAdmin$ | async)">
+                      <td mat-cell  *matCellDef="let element">
+                        <button (click)="detalleCurso(element)" mat-icon-button >
+                            <mat-icon color="primary">more_horz</mat-icon>
+                        </button>
+                    </td>
+                    </div>
                 </ng-container>
 
 

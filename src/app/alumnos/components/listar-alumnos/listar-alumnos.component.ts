@@ -3,18 +3,19 @@ import {MatPaginator} from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
-import { filter, map, Observable, Subscription } from 'rxjs';
+import {Observable, Subscription } from 'rxjs';
 import { AuthState } from 'src/app/auth/state/auth.reducer';
-import { selectSesionAll } from 'src/app/auth/state/auth.selectors';
-import { SesionService } from 'src/app/core/services/sesion.service';
+import { selectSesionAll, selectUsuarioActivo, selectUsuarioAdmin } from 'src/app/auth/state/auth.selectors';
 import { cargarCursoState } from 'src/app/cursos/state/curso-state.actions';
 import { Alumno } from 'src/app/models/alumno';
 import { Curso } from 'src/app/models/curso';
 import { Sesion } from 'src/app/models/sesion';
-import { alumnosCargados, cargarAlumnoState } from '../../state/alumnos-state.actions';
+import { alumnosCargados, cargarAlumnoState, eliminarAlumnoState } from '../../state/alumnos-state.actions';
 import { AlumnoState } from '../../state/alumnos-state.reducer';
 import { selectorAlumnosCargados, selectorCargandoAlumnos } from '../../state/alumnos-state.selectors';
 import { AlumnosService } from '../../services/alumnos.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { Usuario } from 'src/app/models/usuario';
 
 
 @Component({
@@ -23,21 +24,21 @@ import { AlumnosService } from '../../services/alumnos.service';
   styleUrls: ['./listar-alumnos.component.css']
 })
 export class ListarAlumnosComponent implements AfterViewInit,OnDestroy {
-  columnas : string[] = ['id','nombre', 'edad', 'sexo', 'validado', 'acciones' ]
+  columnas : string[] = ['id','nombre', 'edad', 'sexo', 'validado', 'comision', 'acciones' ]
   dataSource!: MatTableDataSource<Alumno>;
   suscripcion!: Subscription;
   alumnos$!: Observable<Alumno[]>;
-  alumnos!:Alumno[]
   table: any;
   subscription!: Subscription;
   subscriptionEliminate!: Subscription;
   cargando$!:Observable<Boolean>
-
+  usuarioAdmin$!:Observable<boolean | undefined>;
   constructor(
     private router:Router,
-    private alumnosService: AlumnosService,
+    // private alumnosService: AlumnosService,
     private authStore:Store<AuthState>,
-    private store:Store<AlumnoState>
+    private store:Store<AlumnoState>,
+    private snackBar:MatSnackBar,
   ){
   }
 
@@ -47,20 +48,20 @@ export class ListarAlumnosComponent implements AfterViewInit,OnDestroy {
 
 
   ngOnInit(): void {
+    this.dataSource = new MatTableDataSource<Alumno>();
     this.store.select(selectSesionAll).subscribe((sesion:Sesion)=>{
       console.log('Estado de la sesion', sesion)
       if(!sesion.sesionActiva){
         this.router.navigate(['auth/login'])
       }
     })
-    this.dataSource = new MatTableDataSource<Alumno>();
+
+    this.usuarioAdmin$ = this.authStore.select(selectUsuarioAdmin)
     this.cargando$ = this.store.select(selectorCargandoAlumnos);
-    this.store.dispatch(cargarCursoState());
-    this.alumnosService.obtenerAlumnosObservable().subscribe((alumnos:Alumno[])=>{
-      this.store.dispatch(alumnosCargados({alumnos:alumnos}))
-    })
+    this.store.dispatch(cargarAlumnoState());
     this.alumnos$ = this.store.select(selectorAlumnosCargados);
     this.subscription = this.alumnos$.subscribe((alumnos)=>{
+      console.log(alumnos)
       this.dataSource.data = alumnos
     })
   }
@@ -77,26 +78,18 @@ export class ListarAlumnosComponent implements AfterViewInit,OnDestroy {
   }
 
 
-  editarAlumno(id:number){
-    let alumnoeditado= this.alumnos[id]
-   this.router.navigate(['alumnos/editar/' , alumnoeditado])
+  editarAlumno(alumno:Alumno){
+   console.log(alumno)
+   this.router.navigate(['alumnos/editar/' , alumno])
   }
 
-  eliminarAlumno(id:number){
-   let alumnoToEliminate = this.alumnos[id]
-   this.subscriptionEliminate = this.alumnosService.eliminarAlumno(alumnoToEliminate).subscribe((alumno:Alumno)=>{
-     alert(`${alumno.nombre} eliminado , ${alumno.id}`)
-     this.alumnosService.obtenerAlumnosObservable().subscribe((alumnos:Alumno[])=>{
-       // Reseteo la tabla y resteo la referencia de alumnos, para que pueda volver a agarrar el id en la misma posicion.
-       this.dataSource.data = alumnos
-       this.alumnos = alumnos
-     });
-   })
-   // reseteo el paginador y vuelvo a actualizar el observable de alumnos$.
-   // Recargo la pagina.
-   this.dataSource.paginator = this.paginator;
-   this.alumnos$ = this.alumnosService.obtenerAlumnosObservable();
-   this.router.navigate(['alumnos/listar'])
+  detalleAlumno(alumno:Alumno){
+    this.router.navigate(['alumnos/detalle', alumno])
+  }
+
+  eliminarAlumno(alumno:Alumno){
+   this.snackBar.open(`${alumno.nombre} eliminado , ${alumno.id}`)
+   this.store.dispatch(eliminarAlumnoState({alumno:alumno}))
  }
 
 

@@ -9,14 +9,14 @@ import * as AuthActions from './auth.actions';
 export class AuthEffects {
 
 
-  cargarAuths$ = createEffect(() => {
-    return this.actions$.pipe( 
+  // cargarAuths$ = createEffect(() => {
+  //   return this.actions$.pipe(
 
-      ofType(AuthActions.cargarAuths),
-      /** An EMPTY observable only emits completion. Replace with your own observable API request */
-      concatMap(() => EMPTY as Observable<{ type: string }>)
-    );
-  });
+  //     ofType(AuthActions.cargarAuths),
+  //     /** An EMPTY observable only emits completion. Replace with your own observable API request */
+  //     concatMap(() => EMPTY as Observable<{ type: string }>)
+  //   );
+  // });
 
   constructor(private actions$: Actions) {}
 }

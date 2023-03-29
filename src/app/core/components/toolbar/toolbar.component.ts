@@ -2,8 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
+import { sesionLogOut } from 'src/app/auth/state/auth.actions';
 import { AuthState } from 'src/app/auth/state/auth.reducer';
-import { selectAuthState, selectSesionActiva, selectSesionAll, selectUsuarioActivo } from 'src/app/auth/state/auth.selectors';
+import { selectSesionActiva, selectUsuarioActivo } from 'src/app/auth/state/auth.selectors';
 import { Sesion } from 'src/app/models/sesion';
 import { Usuario } from 'src/app/models/usuario';
 
@@ -14,7 +15,7 @@ import { Usuario } from 'src/app/models/usuario';
 })
 export class ToolbarComponent implements OnInit {
   title = 'AngularBarbato';
-  sesionActiva$!:Observable<Boolean>
+  sesionActiva$!:Observable<boolean>
   usuarioActivo$!:Observable<Usuario | undefined>
   constructor(
     private router: Router,
@@ -23,18 +24,14 @@ export class ToolbarComponent implements OnInit {
 
   ngOnInit(): void {
     this.sesionActiva$ = this.authStore.select(selectSesionActiva)
-    this.usuarioActivo$ = this.authStore.select(selectUsuarioActivo)
+
     this.sesionActiva$.subscribe((data)=>{
       console.log(data)
     })
   }
 
   logOut(){
-    let sesionLogout: Sesion = {
-      sesionActiva:false,
-      usuarioActivo:undefined
-    }
-      // falta hacer el llamado a la sesion.logout(sesionLogout)
+    this.authStore.dispatch(sesionLogOut())
     this.router.navigate(['auth/login'])
   }
 

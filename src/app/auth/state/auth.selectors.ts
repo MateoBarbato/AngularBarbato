@@ -16,6 +16,11 @@ export const selectUsuarioActivo = createSelector(
   (state)=>state.sesion.usuarioActivo
 )
 
+export const selectUsuarioAdmin = createSelector(
+  selectAuthState,
+  (state)=>state.sesion.usuarioActivo?.esAdmin
+)
+
 export const selectSesionAll = createSelector(
   selectAuthState,
   (state)=>state.sesion

@@ -2,9 +2,12 @@ import { Component, Input, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators} from '@angular/forms';
 import { MatSlideToggleChange } from '@angular/material/slide-toggle';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Store } from '@ngrx/store';
 import { Subscription } from 'rxjs';
 import { Alumno } from 'src/app/models/alumno';
 import { AlumnosService } from '../../services/alumnos.service';
+import { editarAlumnoState } from '../../state/alumnos-state.actions';
+import { AlumnoState } from '../../state/alumnos-state.reducer';
 
 @Component({
   selector: 'app-editar-alumno',
@@ -19,7 +22,8 @@ export class EditarAlumnoComponent implements OnInit {
   constructor(
     private router:Router,
     private alumnoService:AlumnosService,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    private store: Store<AlumnoState>
   ){
 
   }
@@ -34,6 +38,7 @@ export class EditarAlumnoComponent implements OnInit {
         edad: new FormControl(parametros.get('edad'),Validators.required),
         sexo: new FormControl(parametros.get('sexo'),Validators.required),
         validado: new FormControl(parametros.get('validado')),
+        comision: new FormControl(parametros.get('comision'))
       })
     })
   }
@@ -50,16 +55,13 @@ export class EditarAlumnoComponent implements OnInit {
       apellido: this.formulario.value.apellido,
       edad: this.formulario.value.edad,
       sexo: this.formulario.value.sexo,
-      validado: this.toggleValue
+      validado: this.toggleValue,
+      comision:this.formulario.value.comision
     }
 
     if(this.formulario.status=="VALID"){
- 
-      this.alumnoService.editarAlumno(alumno).subscribe((alumno:Alumno)=>{
-        alert(`El alumno: ${alumno.nombre} fue editado satisfactoriamente`)
-      })
+      this.store.dispatch(editarAlumnoState({alumno:alumno}))
       setTimeout(()=>this.router.navigate(['alumnos/listar']),1000)
-
     } else {
       alert('Los campos maracados en rojo son obligatorios')
     }}

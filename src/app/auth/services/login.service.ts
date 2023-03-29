@@ -10,10 +10,11 @@ import { env } from 'src/enviroment/enviroment';
 export class LoginService {
   constructor(
     private http : HttpClient
+
   ) {}
 
   login( usuario: Usuario): Observable<Sesion>{
-    return this.http.get<Usuario[]>(`${env.authURL}/usuarios`).pipe(
+    return this.http.get<Usuario[]>(`${env.api2URL}/users`).pipe(
       map((usuarios:Usuario[])=>{
         let usuarioValidado = usuarios.find((u:Usuario)=> u.usuario === usuario.usuario && u.contrasena === usuario.contrasena)
 
@@ -31,8 +32,4 @@ export class LoginService {
         }
       }))
   }
-
-  // logout(sesion: Sesion){
-  //   return sesion
-  // }
 }

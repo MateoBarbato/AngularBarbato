@@ -1,0 +1,21 @@
+.container {
+  padding: 2vh 2vh 10vh 2vh;
+  width: 75%;
+  margin: auto;
+}
+
+.container-table{
+  width: 100%;
+  margin: auto;
+  margin-top: 3vh;
+  margin-bottom: 5vh;
+  padding: 2vh 0vh;
+}
+
+.table-background{
+  background-color: rgb(74 74 74);
+  padding: 6vh 2vh 6vh 2vh;
+  margin: auto;
+  border-radius: 5px;
+  border: rgba(121, 121, 121, 0.705) 2px solid;
+}

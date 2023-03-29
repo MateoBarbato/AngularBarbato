@@ -6,6 +6,10 @@ export const cargarSesion = createAction(
   props<{sesion:Sesion}>()
 )
 
+export const sesionLogOut = createAction(
+  '[Auth] Log Out'
+)
+
 
 
 

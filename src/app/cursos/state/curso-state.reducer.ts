@@ -26,12 +26,14 @@ export const reducer = createReducer(
     return state;
   }),
   on(CursoStateActions.editarCurso, (state)=>{
-    return state
+    return state;
   }),
   on(CursoStateActions.eliminarCurso, (state)=>{
-    return state
+    return state;
   }),
+
 );
+
 
 export const cursoStateFeature = createFeature({
   name: cursoStateFeatureKey,

@@ -6,7 +6,7 @@
                 <mat-label>Nombre</mat-label>
                 <input matInput formControlName="nombre">
             </mat-form-field >
-            
+
             <mat-form-field class="col-md-6">
                 <mat-label>apellido</mat-label>
                 <input matInput formControlName="apellido" >
@@ -22,8 +22,13 @@
                 <input matInput formControlName="sexo" >
             </mat-form-field >
 
+            <mat-form-field class="col-md-6">
+                <mat-label>Comision</mat-label>
+                <input matInput formControlName="comision" >
+            </mat-form-field >
+
             <div class="col-md-6">
-                <mat-slide-toggle 
+                <mat-slide-toggle
                 [checked]="toggleValue === true ? true: false"
                 (change)="setValue($event)"
                 formControlName="validado">
@@ -37,5 +42,5 @@
         </div>
     </form>
 
-           
-</div>  
+
+</div>

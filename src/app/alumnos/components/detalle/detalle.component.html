@@ -1,6 +1,6 @@
 <div class="container">
 
-  <form [formGroup]="formulario" (ngSubmit)="editandoAlumno()">
+  <form [formGroup]="formulario">
       <div class="row">
           <mat-form-field class="col-md-6">
               <mat-label>Nombre</mat-label>
@@ -22,20 +22,66 @@
               <input matInput formControlName="sexo" >
           </mat-form-field >
 
+          <mat-form-field class="col-md-6">
+            <mat-label>Comision</mat-label>
+            <input matInput formControlName="comision" >
+          </mat-form-field >
+
           <div class="col-md-6">
-              <mat-slide-toggle
-              [checked]="toggleValue === true ? true: false"
-              (change)="setValue($event)"
-              formControlName="validado">
-                  Validado
-              </mat-slide-toggle>
+            <mat-checkbox formControlName="validado">Validado</mat-checkbox>
           </div>
 
-          <div class="col-md-6 pt-4">
-              <button mat-raised-button type="submit" >Editar</button>
-          </div>
       </div>
   </form>
 
+      <ng-container class="my-5" *ngIf="(cursos$ | async)">
 
+        <div class="container-table">
+          <div class="table-background">
+              <mat-card-title class="title">Tabla Cursos</mat-card-title>
+              <table mat-table  [dataSource]="dataSource">
+                  <ng-container matColumnDef="nombre">
+                      <th mat-header-cell *matHeaderCellDef="">Nombre</th>
+                      <td mat-cell *matCellDef="let element">{{element.nombre}}</td>
+                  </ng-container>
+                  <ng-container matColumnDef="comision">
+                      <th mat-header-cell *matHeaderCellDef="">Comision</th>
+                      <td mat-cell *matCellDef="let element" >{{element.comision}}</td>
+                  </ng-container>
+                  <ng-container matColumnDef="profesor">
+                      <th mat-header-cell *matHeaderCellDef="">Profesor</th>
+                      <td mat-cell *matCellDef="let element" >{{element.profesor.nombre}}</td>
+                  </ng-container>
+
+                  <ng-container matColumnDef="inscripcionAbierta">
+                      <th mat-header-cell *matHeaderCellDef="">Inscripciones abiertas</th>
+                      <td mat-cell [appBooleanEstilo]="element.inscripcionAbierta" *matCellDef="let element">{{element.inscripcionAbierta | booleanToText:'Si' : 'No'}}</td>
+                  </ng-container>
+
+                  <ng-container matColumnDef="fechaInicio">
+                      <th mat-header-cell *matHeaderCellDef="">Fecha Inicio</th>
+                      <td mat-cell  *matCellDef="let element">{{element.fechaInicio | formatoFecha}}</td>
+                  </ng-container>
+
+                  <ng-container matColumnDef="fechaFin">
+                      <th mat-header-cell *matHeaderCellDef="">Fecha Fin</th>
+                      <td mat-cell  *matCellDef="let element">{{element.fechaFin | formatoFecha}}</td>
+                  </ng-container>
+
+
+                  <tr mat-footer-row *matHeaderRowDef="columnas"></tr>
+                  <tr mat-row *matRowDef="let row; columns : columnas"></tr>
+
+              </table>
+              <mat-paginator [pageSizeOptions]="[5, 10, 20]"
+                          showFirstLastButtons
+                          aria-label="Select page of periodic elements">
+          </mat-paginator>
+          </div>
+      </div>
+    </ng-container>
+
+    <div class="col-md-6 pt-4">
+      <button mat-raised-button (click)="volverListado()" >Volver</button>
+  </div>
 </div>

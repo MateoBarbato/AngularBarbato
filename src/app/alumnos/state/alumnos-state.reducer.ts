@@ -22,7 +22,16 @@ export const reducer = createReducer(
   }),
   on(AlumnosStateActions.alumnosCargados, (state,{alumnos}) => {
     return{...state, cargando:false,alumnos:alumnos}
-  })
+  }),
+  on(AlumnosStateActions.agregarAlumnoState, (state) => {
+    return state;
+  }),
+  on(AlumnosStateActions.editarAlumnoState, (state) => {
+    return state;
+  }),
+  on(AlumnosStateActions.eliminarAlumnoState, (state) => {
+    return state;
+  }),
 );
 
 export const alumnosStateFeature = createFeature({

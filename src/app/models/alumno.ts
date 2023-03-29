@@ -5,4 +5,5 @@ export interface Alumno {
     edad:number,
     sexo:string,
     validado:boolean,
+    comision:string
 }

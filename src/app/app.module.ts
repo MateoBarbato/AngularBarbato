@@ -28,8 +28,6 @@ import { EffectsModule } from '@ngrx/effects';
 import { LoginService } from './auth/services/login.service';
 import { AuthModule } from './auth/auth.module';
 
-
-
 @NgModule({
   declarations: [
     AppComponent,

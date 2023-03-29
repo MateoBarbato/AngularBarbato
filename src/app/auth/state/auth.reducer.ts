@@ -22,7 +22,15 @@ export const reducer = createReducer(
       sesionActiva:true,
       usuarioActivo:sesion.usuarioActivo
     }}
-  }))
+  }),
+  on(AuthActions.sesionLogOut,(state) =>{
+    return {...state, sesion:{
+      sesionActiva:false
+    }}
+  })
+
+
+  )
 
 export const authFeature = createFeature({
   name: authFeatureKey,

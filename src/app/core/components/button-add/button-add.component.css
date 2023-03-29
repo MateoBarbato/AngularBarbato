@@ -5,9 +5,19 @@
     justify-content: space-evenly;
     align-items: center;
     gap: 1rem;
+
 }
 
 .button{
   width: 100% !important;
   background-color: #212121b8;
+
+}
+
+.spacer{
+  padding: 1rem 0rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  justify-content: space-evenly;
 }

@@ -13,6 +13,9 @@ import { AlumnosStateEffects } from './state/alumnos-state.effects';
 import { StoreModule } from '@ngrx/store';
 import { alumnosStateFeatureKey, reducer } from './state/alumnos-state.reducer';
 import { DetalleComponent } from './components/detalle/detalle.component';
+import { CursoStateEffects } from '../cursos/state/curso-state.effects';
+import {cursoStateFeatureKey } from '../cursos/state/curso-state.reducer';
+import { reducer as reducerCurso } from '../cursos/state/curso-state.reducer'
 // import { HttpClient } from '@angular/common/http';
 
 
@@ -32,9 +35,8 @@ import { DetalleComponent } from './components/detalle/detalle.component';
     AlumnosRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    StoreModule.forFeature(alumnosStateFeatureKey,reducer)
-    // EffectsModule.forFeature([AlumnosStateEffects]),
-
+    StoreModule.forFeature(alumnosStateFeatureKey,reducer),
+    EffectsModule.forFeature([AlumnosStateEffects]),
   ],
   exports:[ListarAlumnosComponent,
     EditarAlumnoComponent,

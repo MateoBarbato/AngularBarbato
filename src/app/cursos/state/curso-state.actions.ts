@@ -25,4 +25,3 @@ export const eliminarCurso = createAction(
   props<{curso:Curso}>()
 );
 
-
