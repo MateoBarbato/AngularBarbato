@@ -89,12 +89,15 @@ Arrancar el servidor de usuarios
 Si tienes algun Feedback porfavor comunicarse a barbatomateocoderhouse@gmail.com donde el asunto sea AngularBarbato.
 
 Muchas gracias.
-
-
-
-
-
-
+    
+    
+  
+    
+    
+    
+      
+      
+       
 # Angular Barbato
 This Angular Cli project is focused on organizing and listing students, courses, and teachers of an organization.
 
