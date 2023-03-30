@@ -114,7 +114,7 @@ The admin’s hierarchy is a much more complete navigation with different functi
 ## Technology Stack
 Client: Angular CLI, Material, Bootstrap, Ngrx
 
-Server: MockAPi, JSON server(while developing only)
+Server: MockAPi, JSON server(solo en desarrollo)
 
 ## Features
 SCRUM of all Data
