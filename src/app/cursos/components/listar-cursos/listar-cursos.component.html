@@ -37,18 +37,22 @@
                         </mat-card-content>
                         <div *ngIf="(usuarioAdmin$ | async)">
                           <mat-card-actions align="end">
-                            <button  mat-raised-button color="primary" (click)="editarCurso(curso)" >
+                            <button  mat-raised-button color="accent" (click)="editarCurso(curso)" >
                                 Editar
                             </button>
-                            <button mat-raised-button (click)="eliminarCurso(curso)" color="accent">
+                            <button mat-raised-button (click)="detalleCurso(curso)" color="accent">
+                              Detalle
+                            </button>
+                            <button mat-raised-button (click)="eliminarCurso(curso)" color="warn">
                                 Eliminar
                             </button>
+
                         </mat-card-actions>
                         </div>
                         <div *ngIf="!(usuarioAdmin$ | async)">
                           <mat-card-actions class="d-flex justify-content-center">
                             <button class="button-more" mat-raised-button color="primary" (click)="detalleCurso(curso)" >
-                                Ver mas ...
+                              Detalle
                             </button>
                         </mat-card-actions>
                         </div>
@@ -98,10 +102,13 @@
                     <div *ngIf="(usuarioAdmin$ | async)">
                       <td mat-cell  *matCellDef="let element">
                         <button (click)="editarCurso(element)" mat-icon-button >
-                            <mat-icon color="warn">edit</mat-icon>
+                            <mat-icon color="accent">edit</mat-icon>
+                        </button>
+                        <button (click)="detalleCurso(element)" mat-icon-button >
+                            <mat-icon color="accent">more-horz</mat-icon>
                         </button>
                         <button (click)="eliminarCurso(element)" mat-icon-button >
-                            <mat-icon color="accent">delete</mat-icon>
+                            <mat-icon color="warn">delete</mat-icon>
                         </button>
 
                     </td>

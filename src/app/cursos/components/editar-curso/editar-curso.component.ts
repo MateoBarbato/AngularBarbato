@@ -48,7 +48,6 @@ export class EditarCursoComponent implements OnInit{
       fechaFin: this.formulario.value.fechaFin,
       inscripcionAbierta: this.formulario.value.inscripcionAbierta,
       profesor:this.formulario.value.profesor
-      // ADD FORM VALUE PROFESOR
     }
 
     if(this.formulario.status=='VALID'){

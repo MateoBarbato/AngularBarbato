@@ -34,12 +34,12 @@
       </div>
   </form>
 
-      <ng-container class="my-5" *ngIf="(cursos$ | async)">
+      <ng-container class="my-5" *ngIf="(cursos$ | async)?.length">
 
-        <div class="container-table">
-          <div class="table-background">
-              <mat-card-title class="title">Tabla Cursos</mat-card-title>
-              <table mat-table  [dataSource]="dataSource">
+      <div class="container-table">
+        <div class="table-background">
+          <mat-card-title class="title">Tabla Cursos</mat-card-title>
+            <mat-table mat-table  [dataSource]="dataSource">
                   <ng-container matColumnDef="nombre">
                       <th mat-header-cell *matHeaderCellDef="">Nombre</th>
                       <td mat-cell *matCellDef="let element">{{element.nombre}}</td>
@@ -67,17 +67,32 @@
                       <th mat-header-cell *matHeaderCellDef="">Fecha Fin</th>
                       <td mat-cell  *matCellDef="let element">{{element.fechaFin | formatoFecha}}</td>
                   </ng-container>
-
+                  <ng-container matColumnDef="actions">
+                      <th mat-header-cell *matHeaderCellDef="">Actions</th>
+                      <div *ngIf="(usuarioAdmin$ | async)">
+                        <td mat-cell  *matCellDef="let element ; let i = index">
+                          <button (click)="editandoAlumno()" mat-icon-button >
+                              <mat-icon color="warn">edit</mat-icon>
+                          </button>
+                      </td>
+                      </div>
+                  </ng-container>
 
                   <tr mat-footer-row *matHeaderRowDef="columnas"></tr>
                   <tr mat-row *matRowDef="let row; columns : columnas"></tr>
 
-              </table>
-              <mat-paginator [pageSizeOptions]="[5, 10, 20]"
-                          showFirstLastButtons
-                          aria-label="Select page of periodic elements">
-          </mat-paginator>
-          </div>
+            </mat-table>
+            <mat-paginator [pageSizeOptions]="[5, 10, 20]"
+                            showFirstLastButtons
+                            aria-label="Select page of periodic elements">
+            </mat-paginator>
+        </div>
+      </div>
+  </ng-container>
+
+    <ng-container class="my-5" *ngIf="!(cursos$ | async)?.length">
+      <div class="container my-5">
+        <h3 class="text-center ">Este alumno no esta inscripto a ningun curso</h3>
       </div>
     </ng-container>
 
