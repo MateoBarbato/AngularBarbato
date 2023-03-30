@@ -95,7 +95,7 @@ Muchas gracias.
 
 
 
-#Angular Barbato
+# Angular Barbato
 This Angular Cli project is focused on organizing and listing students, courses, and teachers of an organization.
 
 The idea is that you can enter and test navigation on the page by following the instructions given on the page.
@@ -108,12 +108,12 @@ The user’s hierarchy is more limited and allows basic functionalities such as 
 
 The admin’s hierarchy is a much more complete navigation with different functionalities such as creating, editing, and deleting courses/students. It also allows you to access registered users and modify them.
 
-#Technology Stack
+## Technology Stack
 Client: Angular CLI, Material, Bootstrap, Ngrx
 
 Server: MockAPi, JSON server(while developing only)
 
-#Features
+## Features
 SCRUM of all Data
 Cross-platform
 Reactive Listing
@@ -122,7 +122,7 @@ To test this project from your device you just have to enter the following link
 
 AngularBarbato => Link
 
-#Run Locally
+## Run Locally
 Clone the project
 
   git clone https://link-to-project
@@ -140,14 +140,14 @@ Start the user server
   json-server src/app/assets/db.json
 Screenshots
 
-#Documentation
+## Documentation
 Angular Material
 
 Bootstrap
 
 Ngrx
 
-#Feedback
+## Feedback
 If you have any feedback please contact barbatomateocoderhouse@gmail.com where the subject is AngularBarbato.
 
 Thank you very much.
