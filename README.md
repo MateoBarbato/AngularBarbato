@@ -22,7 +22,7 @@ La de admin es una navegacion mucho mas completa y con distintas funcionalidades
 
 **Client:** Angular CLI, Material, Boostrap , Ngrx
 
-**Server:** MockAPi, JSON server(while developing only)
+**Server:** MockAPi, JSON server(en desarollo solamente, o corriendolo localmente)
 
 
 ## Caracteristicas
@@ -115,7 +115,7 @@ The admin’s hierarchy is a much more complete navigation with different functi
 ## Technology Stack
 Client: Angular CLI, Material, Bootstrap, Ngrx
 
-Server: MockAPi, JSON server(solo en desarrollo)
+Server: MockAPi, JSON server(while developing only)
 
 ## Features
 SCRUM of all Data
