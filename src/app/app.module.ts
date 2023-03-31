@@ -27,6 +27,7 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { EffectsModule } from '@ngrx/effects';
 import { LoginService } from './auth/services/login.service';
 import { AuthModule } from './auth/auth.module';
+import { UsuariosDetalleComponent } from './core/components/usuarios-detalle/usuarios-detalle.component';
 
 @NgModule({
   declarations: [
@@ -37,6 +38,7 @@ import { AuthModule } from './auth/auth.module';
     NotFoundComponent,
     ToolbarComponent,
     InicioComponent,
+    UsuariosDetalleComponent,
   ],
   imports: [
     BrowserModule,

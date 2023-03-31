@@ -63,10 +63,9 @@ export class DetalleComponent {
       }else{
         return false
       }
-    })
+    })})
 
-    })
-
+    this.formulario.disable()
     this.storeAuth.select(selectSesionAll).subscribe((sesion:Sesion)=>{
       if(!sesion.sesionActiva){
         this.router.navigate(['auth/login'])

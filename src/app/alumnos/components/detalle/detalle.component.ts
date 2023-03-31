@@ -12,7 +12,6 @@ import { selectorCursosCargados } from 'src/app/cursos/state/curso-state.selecto
 import { Alumno } from 'src/app/models/alumno';
 import { Curso } from 'src/app/models/curso';
 import { Sesion } from 'src/app/models/sesion';
-import { Usuario } from 'src/app/models/usuario';
 import { AlumnosService } from '../../services/alumnos.service';
 import { editarAlumnoState, eliminarAlumnoState } from '../../state/alumnos-state.actions';
 
@@ -75,10 +74,12 @@ export class DetalleComponent {
       })
     })
 
+    this.formulario.disable()
+
     this.store.select(selectSesionAll).subscribe((sesion:Sesion)=>{
-      // if(!sesion.sesionActiva){
-      //   this.router.navigate(['auth/login'])
-      // }
+      if(!sesion.sesionActiva){
+        this.router.navigate(['auth/login'])
+      }
     })
   }
 
