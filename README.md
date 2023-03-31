@@ -37,7 +37,7 @@ La de admin es una navegacion mucho mas completa y con distintas funcionalidades
 
 Para testear este proyecto desde tu dispositivo solo tienes que ingresar al siguiente link  
 
-AngularBarbato => [Link]('https://angular-barbato.vercel.app/inicio')
+AngularBarbato => [Link](https://angular-barbato.vercel.app/inicio)
 
 
 ## Correr Localmente
@@ -124,7 +124,7 @@ Reactive Listing
 Deployment
 To test this project from your device you just have to enter the following link
 
-AngularBarbato => Link
+AngularBarbato => [Link](https://angular-barbato.vercel.app/inicio)
 
 ## Run Locally
 Clone the project
