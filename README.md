@@ -81,9 +81,10 @@ Arrancar el servidor de usuarios
 
 [Angular Material](https://material.angular.io/)
 
-[Boostrap]('https://getbootstrap.com/')
+[Boostrap](https://getbootstrap.com/)
 
-[Ngrx]('https://ngrx.io/')
+[Ngrx](https://ngrx.io/)
+  
 ## Feedback
 
 Si tienes algun Feedback porfavor comunicarse a barbatomateocoderhouse@gmail.com donde el asunto sea AngularBarbato.
@@ -144,11 +145,11 @@ Start the user server
 Screenshots
 
 ## Documentation
-Angular Material
+Angular Material(https://material.angular.io/)
 
-Bootstrap
+Bootstrap(https://getbootstrap.com/)
 
-Ngrx
+Ngrx(https://ngrx.io/)
 
 ## Feedback
 If you have any feedback please contact barbatomateocoderhouse@gmail.com where the subject is AngularBarbato.
