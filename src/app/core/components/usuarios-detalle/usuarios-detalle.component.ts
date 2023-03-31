@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { UsuarioService } from '../../services/usuario.service';
@@ -11,7 +11,7 @@ import { MatTableDataSource } from '@angular/material/table';
   templateUrl: './usuarios-detalle.component.html',
   styleUrls: ['./usuarios-detalle.component.css']
 })
-export class UsuariosDetalleComponent implements OnInit {
+export class UsuariosDetalleComponent implements OnInit, OnDestroy {
   formulario!:FormGroup
   columnas:string[] = ['usuario', 'contraseña', 'admin']
   usuarios$!:Observable<Usuario[]>
@@ -31,6 +31,10 @@ export class UsuariosDetalleComponent implements OnInit {
       console.log(data)
       this.dataSource.data = data
     })
+  }
+
+  ngOnDestroy(): void {
+      this.subscription.unsubscribe()
   }
 
   volverInicio(){
